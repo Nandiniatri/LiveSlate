@@ -2,7 +2,7 @@ import Header from "./header/Header";
 
 const LiveSlate = () => {
     return (
-        <div>
+        <div className="liveSlate-main-container">
             <Header />
         </div>
     )
