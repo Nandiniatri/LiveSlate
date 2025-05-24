@@ -11,9 +11,9 @@ export function makeServer({ environment = "development" } = {}){
         routes() {
             this.namespace = "api";
 
-            this.get("/header" , (schema) => {
-                return schema.db.header;
-            })
+            // this.get("/" , (schema) => {
+            //     return schema.db.header;
+            // })
         }
     })
 }
