@@ -1,31 +1,27 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background-color: #f5f5ff; */
-  padding: 30px;
+  padding: 25px;
 }
 
 .liveSlate-main-container {
-  background-color: #e6e6fa;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
-  margin: auto;
+  /* border: solid; */
+  height: 91vh;
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #eae8fe;
-  padding: 16px 24px;
-  border-radius: 12px;
-  border: solid;
+  /* background-color: #eae8fe; */
+  padding: 5px 30px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: #dfddfa;
 }
 
 .header-title {
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
   color: #333;
 }
@@ -35,23 +31,6 @@ body {
   gap: 20px;
 }
 
-.tool-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+.icon{
   cursor: pointer;
-  transition: background 0.3s;
-}
-
-.tool-item:hover {
-  background-color: #f0f0ff;
-}
-
-.icon {
-  font-size: 18px;
-  color: #5a5a5a;
 }

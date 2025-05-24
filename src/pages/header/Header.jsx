@@ -1,20 +1,29 @@
 import React from "react";
 import { FaVideo, FaImage } from "react-icons/fa";
+import { PiShareFatBold } from "react-icons/pi";
+import { FiPlus } from "react-icons/fi";
+import { LuVideo } from "react-icons/lu";
+
 
 const Header = () => {
   return (
-    <div className="header">
-      <h2 className="title">liveSlate</h2>
+    <div className="header-container">
+      <h2 className="header-title">LiveSlate</h2>
+
       <div className="toolbar">
         <div className="tool-item">
-          <FaVideo className="icon" />
-          <span>Video Call</span>
+          <LuVideo size={25} color='#333' className="icon" />
         </div>
+
         <div className="tool-item">
-          <FaImage className="icon" />
-          <span>Image</span>
+          <PiShareFatBold size={22} color='#333' className="icon" />
+        </div>
+
+        <div className="tool-item">
+          <FiPlus size={25} color='#333' className="icon" />
         </div>
       </div>
+
     </div>
   );
 };
