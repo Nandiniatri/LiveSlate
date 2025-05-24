@@ -12,9 +12,7 @@ const LiveSlate = () => {
                 <div className="video-call-section">
                     <VideoCall />
                 </div>
-                <div className="canvas-section">
-                    <Canvas />
-                </div>
+                <Canvas />
                 <div className="chat-section">
                     <ChatBox />
                 </div>

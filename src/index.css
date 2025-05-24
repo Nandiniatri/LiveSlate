@@ -35,7 +35,6 @@ body {
 }
 
 .liveSlate-div2 {
-  /* border: solid red; */
   height: 78vh;
   display: flex;
   flex-direction: row;
@@ -50,7 +49,8 @@ body {
 /* Width adjustment according to image proportions */
 .video-call-section {
   flex: 1;
-  max-width: 220px;
+  max-width: 280px;
+  /* Increased from 220px */
   background-color: #ffffff;
   border-radius: 12px;
   padding: 10px;
@@ -60,23 +60,26 @@ body {
 /* chatbox */
 .chat-section {
   flex: 1;
-  max-width: 220px;
+  max-width: 380px;
+  /* Increased width */
   background-color: #ffffff;
   border-radius: 12px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border: solid;
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 75vh;
   width: 100%;
   max-width: 600px;
   margin: auto;
   background-color: #e5ddd5;
+  border: solid red;
 }
 
 .chat-header {
@@ -156,8 +159,8 @@ body {
 
 
 /* canvas css */
-.canvas-section {
-  flex: 2;
+/* .canvas-section {
+  flex: 1.5;
   background-color: #ffffff;
   border-radius: 12px;
   padding: 10px;
@@ -165,49 +168,15 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  border: solid;
+  border: solid blue;
+  max-width: 550px;
 }
-
-
-.btn-container button {
-  cursor: pointer;
-  border: solid;
-}
-
-.button-container {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-}
-
-/* .mode-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: #e0e0e0;
-  transition: all 0.3s ease;
-} */
-
-/* .mode-button:hover {
-  background-color: #d5d5d5;
-} */
-
-/* .mode-button.active {
-  background-color: #007bff;
-  color: white;
-} */
 
 .canvas-container {
   position: relative;
-  width: 800px;
+  width: 700px;
   height: 500px;
   margin: 0 auto;
-  /* border: 2px solid #ddd; */
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -220,6 +189,8 @@ canvas {
   top: 0;
   left: 0;
   z-index: 1;
+  width: 100%;      
+  height: 100%;    
   border-radius: 8px;
 }
 
@@ -242,4 +213,92 @@ textarea {
 
 .clear-btn {
   margin-left: 10px;
+}
+
+.btn-container button {
+  cursor: pointer;
+  border: solid;
+}
+
+.button-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+} */
+
+
+.canvas-section {
+  flex: 1.5;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* border: solid blue; */
+  max-width: 550px;
+  width: 100%;
+  margin: auto;
+  height: 75vh;
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* 1:1 square box */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  /* border: solid red; */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+canvas,
+textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+textarea {
+  z-index: 2;
+  font-size: 16px;
+  padding: 14px;
+  border: none;
+  resize: none;
+  outline: none;
+  background-color: #fdfdfd;
+}
+
+.drawing-canvas {
+  z-index: 1;
+  cursor: crosshair;
+}
+
+.clear-btn {
+  margin-left: 10px;
+}
+
+.button-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.button-container button {
+  cursor: pointer;
+  border: 1px solid #000;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
 }
