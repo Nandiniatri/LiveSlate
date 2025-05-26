@@ -5,35 +5,33 @@ body {
   /* background: radial-gradient(1000px circle at 90% 10%,
       rgba(206, 72, 248, 0.4),
       #36004d 60%); */
-  background: radial-gradient(1000px circle at 90% 10%, rgb(133 62 156 / 40%), #041059 60%);
+  /* background: radial-gradient(1000px circle at 90% 10%, rgb(133 62 156 / 40%), #041059 60%); */
+  background: radial-gradient(1000px circle at 90% 10%, rgb(150 81 173 / 40%), #2e0681 60%);
   background-color: #270034;
-  /* fallback dark purple */
   min-height: 100vh;
   color: white;
+  /* padding: 10px; */
 }
-
-
 
 .liveSlate-main-container {
   /* border: solid; */
   height: 100vh;
-  /* background: linear-gradient(135deg, #2b0a6e, #431a9e); */
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 30px;
+  padding: 10px 30px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  /* background-color: #dfddfa; */
 }
 
 .header-title {
-  font-size: 25px;
-  font-weight: bold;
-  color: #333;
+  font-size: 33px;
+  font-weight: 700;
+  color: white;
+  user-select: none;
 }
 
 .toolbar {
@@ -43,7 +41,25 @@ body {
 
 .icon {
   cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+.icon:hover {
+  color: #ce48f8;
+}
+
+.tool-item {
+  background: rgba(218, 215, 215, 0.1);
+  padding: 8px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  justify-content: center;
+  /* border: solid; */
+}
+
+
 
 .liveSlate-div2 {
   height: 78vh;

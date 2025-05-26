@@ -1,9 +1,7 @@
 import React from "react";
-import { FaVideo, FaImage } from "react-icons/fa";
 import { PiShareFatBold } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { LuVideo } from "react-icons/lu";
-
 
 const Header = () => {
   return (
@@ -12,18 +10,17 @@ const Header = () => {
 
       <div className="toolbar">
         <div className="tool-item">
-          <LuVideo size={25} color='#333' className="icon" />
+          <LuVideo size={25} color='#fff' className="icon" />
         </div>
 
         <div className="tool-item">
-          <PiShareFatBold size={22} color='#333' className="icon" />
+          <PiShareFatBold size={22} color='#fff' className="icon" />
         </div>
 
         <div className="tool-item">
-          <FiPlus size={25} color='#333' className="icon" />
+          <FiPlus size={25} color='#fff' className="icon" />
         </div>
       </div>
-
     </div> 
   );
 };
