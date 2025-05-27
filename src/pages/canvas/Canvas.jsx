@@ -150,8 +150,8 @@
 
 
 
-import React, { useEffect, useRef, useState } from "react";
-import { io } from "socket.io-client";
+import { useEffect, useRef, useState } from "react";
+import { io } from "socket.io-client";  
 
 const socket = io("https://canvas-backend-ft79.onrender.com/");
 
