@@ -207,6 +207,35 @@ body {
   z-index: 100;
 }
 
+/* Customize the Emoji Picker */
+.EmojiPickerReact {
+  --epr-bg-color: #2a2a72;
+  --epr-hover-bg-color: #3d3d99;
+  --epr-highlight-color: #ffffff;
+  --epr-text-color: #ffffff;
+  --epr-search-input-bg-color: #444;
+  --epr-search-input-text-color: #fff;
+  --epr-picker-border-radius: 16px;
+  --epr-category-label-bg-color: #1c1c3c;
+  --epr-category-icon-active-color: #ff4081;
+  --epr-skin-tone-picker-menu-color: #333;
+  --epr-picker-border-color: #888;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  /* border: solid red !important; */
+  height: 408px !important;
+  width: 304px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Optional: Remove unwanted class-based generated styles */
+[class^="epr_"], [class*=" epr_"] {
+  all: unset;
+  box-sizing: border-box;
+  /* border: solid; */
+}
+
 
 
 /* canvas css */
