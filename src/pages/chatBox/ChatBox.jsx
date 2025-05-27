@@ -176,14 +176,6 @@ function ChatBox() {
     setShowEmojiPicker(false);
   };
 
-  // const handleEmojiClick = (emojiObject) => {
-  //   setNewMessage(newMessage + emojiObject.emoji);
-  // };
-
-  // const toggleEmojiPicker = () => {
-  //   setShowEmojiPicker((prevState) => !prevState);
-  // };
-
   return (
     <div className="chat-panel">
       <h2 className="chat-title">CHAT</h2>
@@ -200,7 +192,7 @@ function ChatBox() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="chat-input">
+      {/* <div className="chat-input">
         <input
           type="text"
           placeholder="Type a message"
@@ -210,8 +202,20 @@ function ChatBox() {
         />
         <button onClick={sendMessage}><IoMdSend size={20} /></button>
         <button onClick={() => setShowEmojiPicker(prev => !prev)}>😊</button>
-      </div>
+      </div> */}
 
+      <div className="chat-input">
+        <input
+          type="text"
+          placeholder="Type a message"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+        />
+        <button onClick={() => setShowEmojiPicker(prev => !prev)}>😊</button>
+        <button onClick={sendMessage}><IoMdSend size={20} /></button>
+      </div>
+      
       {showEmojiPicker && (
         <div className="emoji-picker">
           <EmojiPicker onEmojiClick={(e) => setNewMessage(prev => prev + e.emoji)} />

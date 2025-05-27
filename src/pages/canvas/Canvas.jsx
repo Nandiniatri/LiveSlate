@@ -151,13 +151,13 @@
 
 
 import { useEffect, useRef, useState } from "react";
-import { io } from "socket.io-client";  
+import { io } from "socket.io-client";
 
 const socket = io("https://canvas-backend-ft79.onrender.com/");
 
 const Canvas = () => {
   const canvasRef = useRef(null);
-  const containerRef = useRef(null); // container reference
+  const containerRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
   const [text, setText] = useState("");
@@ -172,7 +172,7 @@ const Canvas = () => {
     canvas.height = container.clientHeight;
 
     const ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "#000";
+    ctx.strokeStyle = "white";
     ctx.lineWidth = 2;
 
     socket.on("draw", (data) => {
@@ -243,10 +243,23 @@ const Canvas = () => {
   return (
     <div className="canvas-section">
       <div className="button-container">
-        <button onClick={() => setMode("drawing")}>Drawing</button>
-        <button onClick={() => setMode("text")}>Text</button>
-        <button onClick={handleClear} className="clear-btn">Clear</button>
+        <button
+          className={`mode-btn ${mode === "drawing" ? "active" : ""}`}
+          onClick={() => setMode("drawing")}
+        >
+          Drawing
+        </button>
+        <button
+          className={`mode-btn ${mode === "text" ? "active" : ""}`}
+          onClick={() => setMode("text")}
+        >
+          Text
+        </button>
+        <button className="clear-btn" onClick={handleClear}>
+          Clear
+        </button>
       </div>
+
 
       <div className="canvas-container" ref={containerRef}>
         <canvas
