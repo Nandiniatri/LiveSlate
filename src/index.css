@@ -58,7 +58,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; 
   gap: 20px;
   padding: 20px;
   border: solid;
@@ -74,6 +74,8 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border: 3px solid rgba(255, 255, 255, 0.1);
 }
+
+
 
 .chat-panel {
   background: linear-gradient(145deg, #3a217b, #4a2ca8);
@@ -199,9 +201,6 @@
   box-sizing: border-box;
 }
 
-
-
-
 .canvas-section {
   flex: 1.5;
   background: rgba(60,47,122,255);
@@ -280,14 +279,7 @@ textarea {
   outline: none;
   background-color: #f3f3f3;
   color: #111;
-}
- */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+} */
 
 body {
   margin: 0;
@@ -300,7 +292,7 @@ body {
 }
 
 .liveSlate-main-container {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -309,11 +301,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 30px;
+  margin: 0 30px;
 }
 
 .header-title {
-  font-size: 2rem;
+  font-size: 33px;
   font-weight: 700;
   color: white;
   user-select: none;
@@ -343,90 +335,156 @@ body {
   justify-content: center;
 }
 
+/* Main row: video, canvas, chat */
 .liveSlate-div2 {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex: 1;
   gap: 20px;
-  padding: 20px 30px;
-  flex-grow: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-/* Video Section */
+/* Video call section */
 .video-call-section {
-  flex: 1 1 250px;
+  flex: 1;
+  min-width: 220px;
   max-width: 280px;
   background-color: #ffffff;
   border-radius: 12px;
   padding: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border: 3px solid rgba(255, 255, 255, 0.1);
+  height: 75vh;
 }
 
-/* Canvas Section */
+/* Canvas section */
 .canvas-section {
-  flex: 1.5 1 300px;
-  max-width: 500px;
-  background: rgba(60, 47, 122, 1);
+  flex: 1.5;
+  background: rgba(60,47,122,255);
   border-radius: 16px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
   height: 75vh;
   color: white;
-  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 17px;
+  margin-bottom: 16px;
+}
+
+.button-container button {
+  cursor: pointer;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  background-color: #5565da;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #5e44c3;
+}
+
+.clear-btn {
+  background-color: #e63946 !important;
 }
 
 .canvas-container {
-  position: relative;
+  /* position: relative;
   width: 100%;
   flex-grow: 1;
   border-radius: 12px;
   overflow: hidden;
   background-color: #22185b;
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05); */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #22185b;
   box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+  padding: 0;
+  margin: 0;
 }
 
 canvas,
 textarea {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border-radius: 12px;
   box-sizing: border-box;
+  color: white; */
+    position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 12px;
 }
 
 .drawing-canvas {
-  z-index: 1;
+  /* z-index: 1;
+  cursor: crosshair; */
+   z-index: 1;
   cursor: crosshair;
+  background-color: transparent;
 }
 
 textarea {
-  z-index: 2;
+  /* z-index: 2;
   font-size: 16px;
   padding: 16px;
   border: none;
   resize: none;
   outline: none;
   background-color: #f3f3f3;
-  color: #111;
+  color: #111; */
+   z-index: 2;
+  font-size: 16px;
+  color: white;
+  background-color: transparent;
+  resize: none;
+  outline: none;
 }
 
-/* Chat Panel */
+/* Chat panel */
+.chat-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .chat-panel {
-  flex: 1 1 250px;
-  max-width: 360px;
   background: linear-gradient(145deg, #3a217b, #4a2ca8);
   color: #fff;
   border-radius: 16px;
   padding: 16px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 360px;
   height: 75vh;
-  margin: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -450,14 +508,14 @@ textarea {
 }
 
 .chat-bubble {
-  max-width: 57%;
+  max-width: 70%;
   padding: 10px 14px;
   border-radius: 6px;
   margin: 10px 0;
   font-size: 1rem;
   line-height: 1.2;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   word-wrap: break-word;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sender {
@@ -486,7 +544,7 @@ textarea {
 
 .chat-input input {
   flex: 1;
-  padding: 8px;
+  padding: 8px 8px;
   border-radius: 20px;
   border: none;
   outline: none;
@@ -506,34 +564,6 @@ textarea {
   background-color: #5843b5;
 }
 
-/* Button container */
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 17px;
-  margin-bottom: 16px;
-}
-
-.button-container button {
-  cursor: pointer;
-  padding: 13px 20px;
-  border: none;
-  border-radius: 12px;
-  font-weight: bold;
-  background-color: #5565da;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.button-container .clear-btn {
-  background-color: #e63946 !important;
-}
-
-.button-container button:hover {
-  background-color: #5e44c3;
-}
-
-/* Emoji Picker */
 .emoji-picker {
   position: absolute;
   bottom: 80px;
@@ -560,63 +590,10 @@ textarea {
   margin-bottom: 10px !important;
 }
 
-[class^="epr_"],
-[class*=" epr_"] {
+[class^="epr_"], [class*=" epr_"] {
   all: unset;
   box-sizing: border-box;
 }
-
-/* 🌐 Responsive Breakpoints */
-@media (max-width: 1024px) {
-  .liveSlate-div2 {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .canvas-section,
-  .chat-panel,
-  .video-call-section {
-    max-width: 90%;
-    width: 100%;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
