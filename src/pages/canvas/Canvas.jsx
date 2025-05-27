@@ -243,9 +243,9 @@ const Canvas = () => {
   return (
     <div className="canvas-section">
       <div className="button-container">
-        <button onClick={() => setMode("drawing")}>🎨 Drawing</button>
-        <button onClick={() => setMode("text")}>📝 Text</button>
-        <button onClick={handleClear} className="clear-btn">🧹 Clear</button>
+        <button onClick={() => setMode("drawing")}>Drawing</button>
+        <button onClick={() => setMode("text")}>Text</button>
+        <button onClick={handleClear} className="clear-btn">Clear</button>
       </div>
 
       <div className="canvas-container" ref={containerRef}>
