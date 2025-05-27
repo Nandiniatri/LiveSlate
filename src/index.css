@@ -281,6 +281,16 @@ textarea {
   color: #111;
 } */
 
+
+
+
+
+
+
+
+
+
+
 body {
   margin: 0;
   padding: 0;
@@ -335,7 +345,6 @@ body {
   justify-content: center;
 }
 
-/* Main row: video, canvas, chat */
 .liveSlate-div2 {
   display: flex;
   flex: 1;
@@ -348,25 +357,19 @@ body {
   /* border: solid; */
 }
 
-/* Video call section */
 .video-call-section {
   flex: 1;
-  /* min-width: 300px; */
-  /* max-width: 280px; */
-  width: 100%;
-  background-color: #ffffff;
   border-radius: 12px;
   padding: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  /* border: 3px solid rgba(255, 255, 255, 0.1); */
   height: 75vh;
-  border: solid red;
+  background: linear-gradient(145deg, #3a217b, #4a2ca8);
+  color: white;
 }
 
-/* Canvas section */
 .canvas-section {
   flex: 1.5;
-  background: rgba(60, 47, 122, 255);
+  background: linear-gradient(145deg, #3a217b, #4a2ca8);
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -374,7 +377,6 @@ body {
   align-items: center;
   justify-content: flex-start;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  max-width: 500px;
   height: 75vh;
   color: white;
 }
@@ -406,13 +408,6 @@ body {
 }
 
 .canvas-container {
-  /* position: relative;
-  width: 100%;
-  flex-grow: 1;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #22185b;
-  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05); */
   position: relative;
   width: 100%;
   height: 100%;
@@ -426,18 +421,9 @@ body {
 
 canvas,
 textarea {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  box-sizing: border-box;
-  color: white; */
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -455,14 +441,6 @@ textarea {
 }
 
 textarea {
-  /* z-index: 2;
-  font-size: 16px;
-  padding: 16px;
-  border: none;
-  resize: none;
-  outline: none;
-  background-color: #f3f3f3;
-  color: #111; */
   z-index: 2;
   font-size: 16px;
   color: white;
@@ -471,14 +449,12 @@ textarea {
   outline: none;
 }
 
-/* Chat panel */
 .chat-section {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   border: solid;
-  width: 80% !important;
 }
 
 .chat-panel {
@@ -492,7 +468,6 @@ textarea {
   max-width: 360px;
   height: 75vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  /* border: solid; */
 }
 
 .chat-title {
@@ -602,227 +577,3 @@ textarea {
   all: unset;
   box-sizing: border-box;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* chatbox */
-/* .chat-section {
-  flex: 1;
-  max-width: 380px;
-  border-radius: 12px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 75vh;
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-}
-
-.chat-header {
-  text-align: center;
-  background-color: #075e54;
-  color: white;
-  padding: 10px;
-}
-
-.chat-box {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px;
-  background-color: #f4f2fa;
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-box::-webkit-scrollbar {
-  display: none;
-}
-
-.chat-bubble {
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 12px;
-  margin: 6px 0;
-  font-size: 1rem;
-  line-height: 1.4;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.sender {
-  align-self: flex-end;
-  background-color: #d3c9ff;
-  color: #2c2c2c;
-}
-
-.receiver {
-  align-self: flex-start;
-  background-color: #ffffff;
-  margin-right: auto;
-  text-align: left;
-}
-
-.message-meta {
-  font-size: 0.75rem;
-  color: gray;
-  margin-top: 4px;
-}
-
-
-.chat-input {
-  background-color: #fff;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  margin-right: 10px;
-  outline: none;
-}
-
-.chat-input button {
-  padding: 10px 12px;
-  background-color: #a390e4;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-} */
-
-
-
-/* canvas css */
-/* .canvas-section {
-  flex: 1.5;
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  max-width: 550px;
-  width: 100%;
-  margin: auto;
-  height: 75vh;
-}
-
-.canvas-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-canvas,
-textarea {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-textarea {
-  z-index: 2;
-  font-size: 16px;
-  padding: 14px;
-  border: none;
-  resize: none;
-  outline: none;
-  background-color: #fdfdfd;
-}
-
-.drawing-canvas {
-  z-index: 1;
-  cursor: crosshair;
-}
-
-.clear-btn {
-  margin-left: 10px;
-}
-
-.button-container {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.button-container button {
-  cursor: pointer;
-  border: 1px solid #000;
-  padding: 6px 12px;
-  border-radius: 4px;
-  background-color: #f0f0f0;
-} */
