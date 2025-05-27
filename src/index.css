@@ -345,7 +345,7 @@ body {
   justify-content: space-between;
   overflow: hidden;
   width: 100%;
-  border: solid;
+  /* border: solid; */
 }
 
 /* Video call section */
@@ -488,10 +488,11 @@ textarea {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 25% !important;
   max-width: 360px;
   height: 75vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* border: solid; */
 }
 
 .chat-title {
