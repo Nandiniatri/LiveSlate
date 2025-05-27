@@ -132,6 +132,7 @@ function ChatBox() {
   useEffect(() => {
     const name = prompt("Enter your name:");
     setUsername(name || "Anonymous");
+    socket.emit("join", name || "Anonymous");
   }, []);
 
   useEffect(() => {
@@ -144,16 +145,18 @@ function ChatBox() {
       setMessages((prev) => [...prev, msg]);
     });
 
-    socket.on("user joined", (joinedUser) => {
-      setMessages((prev) => [
-        ...prev,
-        { username: "System", message: `${joinedUser} has joined the chat`, timestamp: new Date() },
-      ]);
+    socket.on("user joined", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
+
+    socket.on("connect_error", (err) => {
+      console.error("Socket connection error:", err);
     });
 
     return () => {
       socket.off("chat message");
       socket.off("user joined");
+      socket.off("connect_error");
     };
   }, []);
 
@@ -163,14 +166,23 @@ function ChatBox() {
 
   const sendMessage = () => {
     if (newMessage.trim() === "") return;
+
     socket.emit("chat message", {
       username,
       message: newMessage,
-      timestamp: new Date().toISOString(),
     });
+
     setNewMessage("");
     setShowEmojiPicker(false);
   };
+
+  // const handleEmojiClick = (emojiObject) => {
+  //   setNewMessage(newMessage + emojiObject.emoji);
+  // };
+
+  // const toggleEmojiPicker = () => {
+  //   setShowEmojiPicker((prevState) => !prevState);
+  // };
 
   return (
     <div className="chat-panel">

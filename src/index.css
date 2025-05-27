@@ -344,25 +344,29 @@ body {
   box-sizing: border-box;
   justify-content: space-between;
   overflow: hidden;
+  width: 100%;
+  border: solid;
 }
 
 /* Video call section */
 .video-call-section {
   flex: 1;
-  min-width: 220px;
-  max-width: 280px;
+  /* min-width: 300px; */
+  /* max-width: 280px; */
+  width: 100%;
   background-color: #ffffff;
   border-radius: 12px;
   padding: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  /* border: 3px solid rgba(255, 255, 255, 0.1); */
   height: 75vh;
+  border: solid red;
 }
 
 /* Canvas section */
 .canvas-section {
   flex: 1.5;
-  background: rgba(60,47,122,255);
+  background: rgba(60, 47, 122, 255);
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -430,7 +434,7 @@ textarea {
   border-radius: 12px;
   box-sizing: border-box;
   color: white; */
-    position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -445,7 +449,7 @@ textarea {
 .drawing-canvas {
   /* z-index: 1;
   cursor: crosshair; */
-   z-index: 1;
+  z-index: 1;
   cursor: crosshair;
   background-color: transparent;
 }
@@ -459,7 +463,7 @@ textarea {
   outline: none;
   background-color: #f3f3f3;
   color: #111; */
-   z-index: 2;
+  z-index: 2;
   font-size: 16px;
   color: white;
   background-color: transparent;
@@ -473,6 +477,8 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid;
+  width: 80% !important;
 }
 
 .chat-panel {
@@ -482,7 +488,7 @@ textarea {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   max-width: 360px;
   height: 75vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -509,10 +515,10 @@ textarea {
 
 .chat-bubble {
   max-width: 70%;
-  padding: 10px 14px;
+  padding: 7px 10px;
   border-radius: 6px;
   margin: 10px 0;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   line-height: 1.2;
   word-wrap: break-word;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -590,7 +596,8 @@ textarea {
   margin-bottom: 10px !important;
 }
 
-[class^="epr_"], [class*=" epr_"] {
+[class^="epr_"],
+[class*=" epr_"] {
   all: unset;
   box-sizing: border-box;
 }
