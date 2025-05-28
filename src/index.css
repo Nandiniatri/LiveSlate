@@ -316,4 +316,17 @@ textarea {
   .canvas-wrapper canvas {
     height: 300px;
   }
+
+  .chat-panel {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    /* or whatever height you prefer */
+    max-height: 60vh;
+    background: linear-gradient(135deg, #3b0a75, #452779);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: solid;
+  }
 }
