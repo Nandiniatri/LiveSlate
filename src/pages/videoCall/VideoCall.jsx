@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { useRef , useState , useEffect} from "react";
+import { useRef, useState, useEffect } from "react";
 
 const VideoCall = () => {
   const localVideoRef = useRef(null);
@@ -106,40 +106,45 @@ const VideoCall = () => {
   }, [roomId]);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>🔵 WebRTC Video Call</h2>
-      <input
-        placeholder="Enter Room ID"
-        value={roomId}
-        onChange={(e) => setRoomId(e.target.value)}
-      />
-      <button onClick={startCall} disabled={inCall || !roomId}>
-        Join Call
-      </button>
+    <>
+      <h2 className="video-call-title">VIDEO CALL</h2>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
-        <div>
-          <h4>📷 Your Video</h4>
-          <video
-            ref={localVideoRef}
-            autoPlay
-            playsInline
-            muted
-            style={{ width: 300 }}
-          />
-        </div>
-        <div>
-          <h4>🎥 Remote Video</h4>
-          <video
-            ref={remoteVideoRef}
-            autoPlay
-            playsInline
-            style={{ width: 300 }}
-          />
-        </div>
+      <div className="video-box">
+        <video
+          ref={localVideoRef}
+          autoPlay
+          playsInline
+          muted
+          className="video-feed"
+        />
+        <span className="live-tag">LIVE</span>
       </div>
-    </div>
+
+      <div className="video-box remote">
+        <video
+          ref={remoteVideoRef}
+          autoPlay
+          playsInline
+          className="video-feed"
+        />
+      </div>
+
+      {!inCall && (
+        <div className="join-controls">
+          <input
+            placeholder="Enter Room ID"
+            value={roomId}
+            onChange={(e) => setRoomId(e.target.value)}
+            className="room-input"
+          />
+          <button onClick={startCall} disabled={!roomId} className="join-btn">
+            Join Call
+          </button>
+        </div>
+      )}
+    </>
   );
+
 };
 
 export default VideoCall;
