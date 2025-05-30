@@ -12,6 +12,7 @@
 
 // export default Modal;  
 
+
 import ReactDOM from 'react-dom';
 
 const Modal = ({ children, isOpen }) => {

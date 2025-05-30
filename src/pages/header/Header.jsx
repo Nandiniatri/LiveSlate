@@ -3,9 +3,10 @@ import { FiPlus } from "react-icons/fi";
 import { LuVideo } from "react-icons/lu";
 import { useState } from "react";
 import Modal from "../../components/Modal";
+import { IoIosClose } from "react-icons/io";
 
 const Header = () => {
-  const [isModalOpen , setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleShare = () => {
     setIsModalOpen(true);
@@ -13,6 +14,11 @@ const Header = () => {
 
   const handleCLoseModal = () => {
     setIsModalOpen(false);
+  }
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText("https://liveslate.app/invite/abc123");
+    alert("Link copied!");
   }
 
   return (
@@ -34,10 +40,26 @@ const Header = () => {
       </div>
 
       <Modal isOpen={isModalOpen} isClose={handleCLoseModal}>
-        <h1 style={{color:"white"}}>Hello</h1>
-        <button onClick={handleCLoseModal}>Close</button>
-      </Modal>
-    </div>
+        <div className="closeBtn-div">
+          <IoIosClose onClick={handleCLoseModal} size={23} className="close-btn" />
+        </div>
+
+        <div className="invite-modal">
+          <h2 className="invite-title">Invite people</h2>
+
+          <div className="link-section">
+            <input
+              type="text"
+              value="https://liveslate.app/invite/abc123"
+              readOnly
+              className="invite-link"
+            />
+            <button className="copy-btn" onClick={handleCopyLink}>Copy Link</button>
+          </div>
+        </div>
+      </Modal >
+
+    </div >
   );
 };
 

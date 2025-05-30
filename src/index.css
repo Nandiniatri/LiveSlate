@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .liveSlate-main-container {
@@ -11,7 +12,6 @@
   padding: 10px;
   box-sizing: border-box;
   color: white;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 .header-container {
@@ -441,15 +441,6 @@ textarea {
 
 
 
-
-
-
-
-
-
-
-
-
 /* 
 .modal-overlay {
   position: fixed;
@@ -474,7 +465,7 @@ textarea {
 
 
 
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -485,6 +476,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid;
 }
 
 .modal-content {
@@ -493,4 +485,79 @@ textarea {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+} */
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #1e1e2f;
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.invite-modal h2.invite-title {
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.link-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.invite-link {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #2a2a3b;
+  color: white;
+  font-size: 14px;
+}
+
+.copy-btn {
+  background-color: #3a8bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.copy-btn:hover {
+  background-color: #3075db;
+}
+
+.close-btn {
+  margin-top: 1rem;
+  background-color: transparent;
+  border: 1px solid #666;
+  color: #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.closeBtn-div{
+  position: relative;
+  bottom: 15px;
+  text-align: end;
 }

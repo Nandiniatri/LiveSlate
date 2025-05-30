@@ -10,6 +10,6 @@ const Button = ({ children, onClick, className, disabled = false, style }) => {
             {children}
         </button>
     );
-};
+}; 
 
 export default Button;
