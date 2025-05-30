@@ -2,12 +2,17 @@ import { PiShareFatBold } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { LuVideo } from "react-icons/lu";
 import { useState } from "react";
+import Modal from "../../components/Modal";
 
 const Header = () => {
   const [isModalOpen , setIsModalOpen] = useState(false);
 
   const handleShare = () => {
     setIsModalOpen(true);
+  }
+
+  const handleCLoseModal = () => {
+    setIsModalOpen(false);
   }
 
   return (
@@ -27,6 +32,11 @@ const Header = () => {
           <FiPlus size={22} className="icon" />
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} isClose={handleCLoseModal}>
+        <h1 style={{color:"white"}}>Hello</h1>
+        <button onClick={handleCLoseModal}>Close</button>
+      </Modal>
     </div>
   );
 };
