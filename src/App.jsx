@@ -1,11 +1,19 @@
 import './App.css'
 import LiveSlate from './pages/LiveSlate'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from './pages/homePage/HomePage';
 
 function App() {
 
   return (
     <>
-      <LiveSlate />
+      {/* <LiveSlate /> */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/joinRoom" element={<LiveSlate />} />
+        </Routes>
+      </Router>
     </>
   )
 }

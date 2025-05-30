@@ -433,7 +433,7 @@ textarea {
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border: solid;
+    /* border: solid; */
   }
 }
 
@@ -494,7 +494,9 @@ textarea {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -502,12 +504,16 @@ textarea {
 }
 
 .modal-content {
-  background-color: #1e1e2f;
+  /* background: ; */
   padding: 1.5rem;
   border-radius: 12px;
   width: 400px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   text-align: center;
+  /* backdrop-filter: blur(4px); */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 .invite-modal h2.invite-title {
@@ -534,7 +540,8 @@ textarea {
 }
 
 .copy-btn {
-  background-color: #3a8bff;
+  /* background-color: #3a8bff; */
+  background: linear-gradient(to right, #4d4dff, #1a75ff);
   color: white;
   border: none;
   padding: 8px 12px;
@@ -550,13 +557,13 @@ textarea {
 .close-btn {
   margin-top: 1rem;
   background-color: transparent;
-  border: 1px solid #666;
+  /* border: 1px solid #666; */
   color: #ccc;
   border-radius: 6px;
   cursor: pointer;
 }
 
-.closeBtn-div{
+.closeBtn-div {
   position: relative;
   bottom: 15px;
   text-align: end;
