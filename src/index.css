@@ -294,9 +294,6 @@ textarea {
 
 
 
-
-
-/* 📱 Responsive Mobile Layout */
 @media (max-width: 768px) {
   .liveSlate-layout {
     display: flex;
@@ -321,7 +318,6 @@ textarea {
     display: flex;
     flex-direction: column;
     height: 400px;
-    /* or whatever height you prefer */
     max-height: 60vh;
     background: linear-gradient(135deg, #3b0a75, #452779);
     border-radius: 12px;
