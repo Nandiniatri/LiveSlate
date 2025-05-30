@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/joinRoom" element={<LiveSlate />} />
+          <Route path="/room/:roomID" element={<LiveSlate />} />
         </Routes>
       </Router>
     </>

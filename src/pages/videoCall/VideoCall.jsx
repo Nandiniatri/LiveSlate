@@ -1,5 +1,6 @@
 import { io } from "socket.io-client";
 import { useRef, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 
 const socket = io("https://videocallbackend-rjrw.onrender.com");
@@ -12,6 +13,9 @@ const VideoCall = () => {
   const localStreamRef = useRef(null);
   const [roomId, setRoomId] = useState("");
   const [inCall, setInCall] = useState(false);
+  const { roomID } = useParams();
+  console.log(roomID);
+  
 
   const startCall = () => {
     socket.emit("join-room", roomId);
