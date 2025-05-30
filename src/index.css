@@ -435,3 +435,41 @@ textarea {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: black;
+}
+
+.modal-content {
+    /* background-color: #fff; */
+    /* background-color: black; */
+    /* padding:10px; */
+    background-color: rgb(30 30 30 / 75%);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    /* color: black; */
+    color: white;
+}

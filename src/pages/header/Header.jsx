@@ -1,12 +1,15 @@
 import { PiShareFatBold } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { LuVideo } from "react-icons/lu";
+import { useState } from "react";
 
 const Header = () => {
-  const handleShare = () => {
+  const [isModalOpen , setIsModalOpen] = useState(false);
 
+  const handleShare = () => {
+    setIsModalOpen(true);
   }
-  
+
   return (
     <div className="header-container">
       <h2 className="header-title">LiveSlate</h2>
@@ -17,7 +20,7 @@ const Header = () => {
         </div>
 
         <div className="tool-item">
-          <PiShareFatBold size={20} className="icon" onClick={handleShare}/>
+          <PiShareFatBold size={20} className="icon" onClick={handleShare} />
         </div>
 
         <div className="tool-item">
