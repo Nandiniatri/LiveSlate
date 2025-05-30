@@ -1,6 +1,10 @@
 import { io } from "socket.io-client";
 import { useRef, useState, useEffect } from "react";
 
+
+const socket = io("https://videocallbackend-rjrw.onrender.com");
+const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
+
 const VideoCall = () => {
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -8,9 +12,6 @@ const VideoCall = () => {
   const localStreamRef = useRef(null);
   const [roomId, setRoomId] = useState("");
   const [inCall, setInCall] = useState(false);
-
-  const socket = io("https://videocallbackend-rjrw.onrender.com");
-  const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
 
   const startCall = () => {
     socket.emit("join-room", roomId);
@@ -129,19 +130,17 @@ const VideoCall = () => {
         />
       </div>
 
-      {!inCall && (
-        <div className="join-controls">
-          <input
-            placeholder="Enter Room ID"
-            value={roomId}
-            onChange={(e) => setRoomId(e.target.value)}
-            className="room-input"
-          />
-          <button onClick={startCall} disabled={!roomId} className="join-btn">
-            Join Call
-          </button>
-        </div>
-      )}
+      <div className="join-controls">
+        <input
+          placeholder="Enter Room ID"
+          value={roomId}
+          onChange={(e) => setRoomId(e.target.value)}
+          className="room-input"
+        />
+        <button onClick={startCall} disabled={inCall || !roomId} className="join-btn">
+          Join Call
+        </button>
+      </div>
     </>
   );
 

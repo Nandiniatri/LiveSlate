@@ -338,7 +338,9 @@ textarea {
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  /* box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1); */
+  /* border: solid; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .remote {
@@ -349,6 +351,7 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* border: solid; */
 }
 
 .live-tag {
