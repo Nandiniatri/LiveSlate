@@ -192,18 +192,6 @@ function ChatBox() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* <div className="chat-input">
-        <input
-          type="text"
-          placeholder="Type a message"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        />
-        <button onClick={sendMessage}><IoMdSend size={20} /></button>
-        <button onClick={() => setShowEmojiPicker(prev => !prev)}>😊</button>
-      </div> */}
-
       <div className="chat-input">
         <input
           type="text"
