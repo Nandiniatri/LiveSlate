@@ -4,7 +4,7 @@ import ChatBox from "./chatBox/ChatBox";
 import Header from "./header/Header";
 
 
-const LiveSlate = () => {
+const LiveSlate = ({ roomID }) => {
     return (
         <div className="liveSlate-main-container">
             <Header />
