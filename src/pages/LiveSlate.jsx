@@ -10,7 +10,7 @@ const LiveSlate = ({ roomID }) => {
             <Header />
             <div className="liveSlate-layout">
                 <div className="video-call-wrapper">
-                    <VideoCall />
+                    <VideoCall roomID={roomID} />
                 </div>
 
                 <div className="canvas-wrapper">

@@ -10,7 +10,7 @@ const VideoCall = () => {
   const remoteVideoRef = useRef(null);
   const peerConnection = useRef(null);
   const localStreamRef = useRef(null);
-  const { roomID } = useParams();
+  // const { roomID } = useParams();
   const [inCall, setInCall] = useState(false);
 
   const createPeerConnection = () => {
