@@ -103,28 +103,30 @@
 
 
 import React, { useEffect, useRef, useState } from "react";
-import { useSocket } from "../context/SocketContext";
-import { useUser } from "../context/UserContext";
+import { useSocket } from "../../context/SocketContext";
+import { useUser } from "../../context/UserContext";
 import EmojiPicker from "emoji-picker-react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 
 const ChatBox = () => {
   const socket = useSocket();
-  const { username } = useUser();
+  const { user } = useUser();
+  const username = user?.username || "Anonymous";
+
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const chatEndRef = useRef(null);
 
-  // Scroll to bottom
+  // Scroll to bottom on new message
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
-  // Socket events
+  // Socket event listeners
   useEffect(() => {
     if (!socket) return;
 
@@ -136,7 +138,7 @@ const ChatBox = () => {
       let name = "Anonymous";
       if (typeof msg === "string") {
         name = msg;
-      } else if (typeof msg === "object" && msg !== null && msg.username) {
+      } else if (typeof msg === "object" && msg?.username) {
         name = msg.username;
       }
 
@@ -160,6 +162,7 @@ const ChatBox = () => {
   // Send message
   const handleSendMessage = () => {
     if (!message.trim()) return;
+
     const data = {
       username,
       message,
@@ -193,12 +196,12 @@ const ChatBox = () => {
         <div ref={chatEndRef} />
       </div>
 
-      <div className="p-2 border-t border-purple-400 flex items-center gap-2">
+      <div className="p-2 border-t border-purple-400 flex items-center gap-2 relative">
         <button onClick={() => setShowEmojiPicker((prev) => !prev)}>
           <BsEmojiSmile size={20} className="text-yellow-500" />
         </button>
         {showEmojiPicker && (
-          <div className="absolute bottom-20 right-4 z-10">
+          <div className="absolute bottom-14 right-4 z-10">
             <EmojiPicker onEmojiClick={handleEmojiClick} theme="dark" />
           </div>
         )}
