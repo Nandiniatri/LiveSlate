@@ -38,20 +38,21 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [roomID, setRoomID] = useState("");
 
-  const openModal = () => {
+  const handleStartMeeting = () => {
+    navigate(`/room/${roomID}`);
+    console.log(`/room/${roomID}`); 
+  };
+
+  const handleOpenModal = () => {
     const newRoomID = crypto.randomUUID();
     setRoomID(newRoomID);
     setIsModalOpen(true);
   };
 
-  const handleStartMeeting = () => {
-    navigate(`/room/${roomID}`);
-  };
-
   const handleCopyLink = () => {
     const fullURL = `${window.location.origin}/room/${roomID}`;
+    console.log(fullURL);
     navigator.clipboard.writeText(fullURL);
-    alert("Link copied!");
   };
 
   return (
@@ -60,7 +61,7 @@ const Home = () => {
         <h1 className="title">LiveSlate</h1>
         <p className="subtitle">Collaborate live with video, chat & canvas</p>
         <div className="button-group">
-          <button onClick={openModal} className="btn join-btn">
+          <button onClick={handleOpenModal} className="btn join-btn">
             New Meeting
           </button>
         </div>
@@ -70,7 +71,7 @@ const Home = () => {
         <div className="modal-backdrop">
           <div className="modal">
             <h2>Start a New Meeting</h2>
-            <p>Click below to create and join a new room.</p>
+            <p>Send this to people you want to meet with. Be sure to save it so you can use it later, too.</p>
 
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "10px" }}>
               <input
@@ -89,6 +90,7 @@ const Home = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };

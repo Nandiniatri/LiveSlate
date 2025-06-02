@@ -396,13 +396,12 @@ import { useParams } from "react-router-dom";
 const socket = io("https://videocallbackend-rjrw.onrender.com");
 const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
 
-const VideoCall = () => {
+const VideoCall = ({roomID}) => {
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
   const peerConnection = useRef(null);
   const localStreamRef = useRef(null);
   const [inCall, setInCall] = useState(false);
-  const { roomID } = useParams();
 
   const createPeerConnection = () => {
     peerConnection.current = new RTCPeerConnection(servers);
@@ -441,7 +440,6 @@ const VideoCall = () => {
           localVideoRef.current.srcObject = stream;
         }
 
-        // 🚀 Automatically join the room
         socket.emit("join-room", roomID);
 
       } catch (error) {
