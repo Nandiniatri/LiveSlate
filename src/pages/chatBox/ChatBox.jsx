@@ -1,227 +1,220 @@
-// import { useEffect, useState, useRef } from "react";
-// import { io } from "socket.io-client";
-// import axios from "axios";
-// import EmojiPicker from "emoji-picker-react";
-// import { IoMdSend } from "react-icons/io";
-
-// const socket = io("https://chat-backend-52d6.onrender.com");
-
-// function ChatBox() {
-//   const [messages, setMessages] = useState([]);
-//   const [newMessage, setNewMessage] = useState("");
-//   const [username, setUsername] = useState("");
-//   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-//   const messagesEndRef = useRef(null);
-
-//   useEffect(() => {
-//     const name = prompt("Enter your name:");
-//     setUsername(name || "Anonymous");
-//     socket.emit("join", name || "Anonymous");
-//   }, []);
-
-//   useEffect(() => {
-//     axios
-//       .get("https://chat-backend-52d6.onrender.com/messages")
-//       .then((res) => setMessages(res.data))
-//       .catch((err) => console.error("Failed to fetch messages:", err));
-
-//     socket.on("chat message", (msg) => {
-//       setMessages((prev) => [...prev, msg]);
-//     });
-
-//     socket.on("user joined", (msg) => {
-//       setMessages((prev) => [...prev, msg]);
-//     });
-
-//     socket.on("connect_error", (err) => {
-//       console.error("Socket connection error:", err);
-//     });
-
-//     return () => {
-//       socket.off("chat message");
-//       socket.off("user joined");
-//       socket.off("connect_error");
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-//   }, [messages]);
-
-//   const sendMessage = () => {
-//     if (newMessage.trim() === "") return;
-
-//     socket.emit("chat message", {
-//       username,
-//       message: newMessage,
-//     });
-
-//     setNewMessage("");
-//     setShowEmojiPicker(false);
-//   };
-
-//   return (
-//     <div className="chat-panel">
-//       <h2 className="chat-title">CHAT</h2>
-//       <div className="chat-box">
-//         {messages.map((msg, i) => (
-//           <div key={i} className={`chat-bubble ${msg.username === username ? "sender" : "receiver"}`}>
-//             <div className="message-text">{msg.message}</div>
-//             <div className="message-meta">
-//               <span>{msg.username}</span> |{" "}
-//               <span>{msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString() : ""}</span>
-//             </div>
-//           </div>
-//         ))}
-//         <div ref={messagesEndRef} />
-//       </div>
-
-//       <div className="chat-input">
-//         <input
-//           type="text"
-//           placeholder="Type a message"
-//           value={newMessage}
-//           onChange={(e) => setNewMessage(e.target.value)}
-//           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-//         />
-//         <button onClick={() => setShowEmojiPicker(prev => !prev)}>😊</button>
-//         <button onClick={sendMessage}><IoMdSend size={20} /></button>
-//       </div>
-      
-//       {showEmojiPicker && (
-//         <div className="emoji-picker">
-//           <EmojiPicker onEmojiClick={(e) => setNewMessage(prev => prev + e.emoji)} />
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default ChatBox;
-
-
-
-
-import React, { useEffect, useRef, useState } from "react";
-import { useSocket } from "../../context/SocketContext";
-import { useUser } from "../../context/UserContext";
+import { useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
+import axios from "axios";
 import EmojiPicker from "emoji-picker-react";
-import { BsEmojiSmile } from "react-icons/bs";
-import { IoSend } from "react-icons/io5";
+import { IoMdSend } from "react-icons/io";
 
-const ChatBox = () => {
-  const socket = useSocket();
-  const { user } = useUser();
-  const username = user?.username || "Anonymous";
+const socket = io("https://chat-backend-52d6.onrender.com");
 
-  const [message, setMessage] = useState("");
+function ChatBox() {
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [username, setUsername] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const chatEndRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
-  // Scroll to bottom on new message
   useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages]);
+    const name = prompt("Enter your name:");
+    console.log(name);
+    
+    setUsername(name || "Anonymous");
+    socket.emit("join", name || "Anonymous");
+  }, []);
 
-  // Socket event listeners
   useEffect(() => {
-    if (!socket) return;
+    axios
+      .get("https://chat-backend-52d6.onrender.com/messages")
+      .then((res) => setMessages(res.data))
+      .catch((err) => console.error("Failed to fetch messages:", err));
 
-    const handleMessage = (data) => {
-      setMessages((prev) => [...prev, data]);
-    };
+    socket.on("chat message", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
 
-    const handleUserJoined = (msg) => {
-      let name = "Anonymous";
-      if (typeof msg === "string") {
-        name = msg;
-      } else if (typeof msg === "object" && msg?.username) {
-        name = msg.username;
-      }
+    socket.on("user joined", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
 
-      const joinMsg = {
-        username: "System",
-        message: `${name} has joined the chat`,
-        timestamp: Date.now(),
-      };
-      setMessages((prev) => [...prev, joinMsg]);
-    };
-
-    socket.on("chat message", handleMessage);
-    socket.on("user joined", handleUserJoined);
+    socket.on("connect_error", (err) => {
+      console.error("Socket connection error:", err);
+    });
 
     return () => {
-      socket.off("chat message", handleMessage);
-      socket.off("user joined", handleUserJoined);
+      socket.off("chat message");
+      socket.off("user joined");
+      socket.off("connect_error");
     };
-  }, [socket]);
+  }, []);
 
-  // Send message
-  const handleSendMessage = () => {
-    if (!message.trim()) return;
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
-    const data = {
+  const sendMessage = () => {
+    if (newMessage.trim() === "") return;
+
+    socket.emit("chat message", {
       username,
-      message,
-      timestamp: Date.now(),
-    };
-    socket.emit("chat message", data);
-    setMessages((prev) => [...prev, data]);
-    setMessage("");
-  };
+      message: newMessage,
+    });
 
-  // Emoji select
-  const handleEmojiClick = (emojiData) => {
-    setMessage((prev) => prev + emojiData.emoji);
+    setNewMessage("");
     setShowEmojiPicker(false);
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto p-2">
-        {messages.map((msg, index) => (
-          <div key={index} className="mb-2">
-            <div className="bg-white rounded-xl p-2 shadow text-sm">
-              <div className="font-semibold text-purple-700">{msg.username}</div>
-              <div>{msg.message}</div>
-              <div className="text-xs text-gray-500">
-                {new Date(msg.timestamp).toLocaleTimeString()}
-              </div>
+    <div className="chat-panel">
+      <h2 className="chat-title">CHAT</h2>
+      <div className="chat-box">
+        {messages.map((msg, i) => (
+          <div key={i} className={`chat-bubble ${msg.username === username ? "sender" : "receiver"}`}>
+            <div className="message-text">{msg.message}</div>
+            <div className="message-meta">
+              <span>{msg.username}</span> |{" "}
+              <span>{msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString() : ""}</span>
             </div>
           </div>
         ))}
-        <div ref={chatEndRef} />
+        <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-2 border-t border-purple-400 flex items-center gap-2 relative">
-        <button onClick={() => setShowEmojiPicker((prev) => !prev)}>
-          <BsEmojiSmile size={20} className="text-yellow-500" />
-        </button>
-        {showEmojiPicker && (
-          <div className="absolute bottom-14 right-4 z-10">
-            <EmojiPicker onEmojiClick={handleEmojiClick} theme="dark" />
-          </div>
-        )}
+      <div className="chat-input">
         <input
           type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-          className="flex-1 rounded px-3 py-1 text-black"
           placeholder="Type a message"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
-        <button
-          onClick={handleSendMessage}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full"
-        >
-          <IoSend />
-        </button>
+        <button onClick={() => setShowEmojiPicker(prev => !prev)}>😊</button>
+        <button onClick={sendMessage}><IoMdSend size={20} /></button>
       </div>
+      
+      {showEmojiPicker && (
+        <div className="emoji-picker">
+          <EmojiPicker onEmojiClick={(e) => setNewMessage(prev => prev + e.emoji)} />
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default ChatBox;
+
+
+
+
+// ChatBox.jsx
+// import React, { useEffect, useRef, useState } from "react";
+// import { useSocket } from "../../context/SocketContext";
+// import { useUser } from "../../context/UserContext";
+// import EmojiPicker from "emoji-picker-react";
+// import { BsEmojiSmile } from "react-icons/bs";
+// import { IoSend } from "react-icons/io5";
+
+// const ChatBox = () => {
+//   const socket = useSocket();
+//   const { username } = useUser() || {}; // fallback in case context not ready
+
+//   const [message, setMessage] = useState("");
+//   const [messages, setMessages] = useState([]);
+//   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+//   const chatEndRef = useRef(null);
+
+//   useEffect(() => {
+//     if (chatEndRef.current) {
+//       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+//     }
+//   }, [messages]);
+
+//   useEffect(() => {
+//     if (!socket || !username) return;
+
+//     socket.emit("join room", username);
+
+//     const handleMessage = (data) => {
+//       setMessages((prev) => [...prev, data]);
+//     };
+
+//     const handleUserJoined = (msg) => {
+//       const name = typeof msg === "object" && msg?.username ? msg.username : "Anonymous";
+//       const joinMsg = {
+//         username: "System",
+//         message: `${name} has joined the chat` ,
+//         timestamp: Date.now(),
+//       };
+//       setMessages((prev) => [...prev, joinMsg]);
+//     };
+
+//     socket.on("chat message", handleMessage);
+//     socket.on("user joined", handleUserJoined);
+
+//     return () => {
+//       socket.off("chat message", handleMessage);
+//       socket.off("user joined", handleUserJoined);
+//     };
+//   }, [socket, username]);
+
+//   const handleSendMessage = () => {
+//     if (!message.trim() || !socket) return;
+//     const data = {
+//       username: username || "Anonymous",
+//       message,
+//       timestamp: Date.now(),
+//     };
+//     socket.emit("chat message", data);
+//     setMessages((prev) => [...prev, data]);
+//     setMessage("");
+//   };
+
+//   const handleEmojiClick = (emojiData) => {
+//     setMessage((prev) => prev + emojiData.emoji);
+//     setShowEmojiPicker(false);
+//   };
+
+//   return (
+//     <div className="flex flex-col h-full">
+//       <div className="flex-1 overflow-y-auto p-2">
+//         {messages.map((msg, index) => (
+//           <div key={index} className="mb-2">
+//             <div className="bg-white rounded-xl p-2 shadow text-sm">
+//               <div className="font-semibold text-purple-700">{msg.username}</div>
+//               <div>{msg.message}</div>
+//               <div className="text-xs text-gray-500">
+//                 {new Date(msg.timestamp).toLocaleTimeString()}
+//               </div>
+//             </div>
+//           </div>
+//         ))}
+//         <div ref={chatEndRef} />
+//       </div>
+
+//       <div className="p-2 border-t border-purple-400 flex items-center gap-2">
+//         <button onClick={() => setShowEmojiPicker((prev) => !prev)}>
+//           <BsEmojiSmile size={20} className="text-yellow-500" />
+//         </button>
+//         {showEmojiPicker && (
+//           <div className="absolute bottom-20 right-4 z-10">
+//             <EmojiPicker onEmojiClick={handleEmojiClick} theme="dark" />
+//           </div>
+//         )}
+//         <input
+//           type="text"
+//           value={message}
+//           onChange={(e) => setMessage(e.target.value)}
+//           onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+//           className="flex-1 rounded px-3 py-1 text-black"
+//           placeholder="Type a message"
+//         />
+//         <button
+//           onClick={handleSendMessage}
+//           className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full"
+//         >
+//           <IoSend />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ChatBox;
