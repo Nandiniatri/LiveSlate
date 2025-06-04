@@ -4,10 +4,10 @@ import ChatBox from "./chatBox/ChatBox";
 import Header from "./header/Header";
 
 
-const LiveSlate = ({ roomID }) => { 
+const LiveSlate = ({ roomID }) => {
     return (
         <div className="liveSlate-main-container">
-            <Header />
+            <Header roomID={roomID} />
             <div className="liveSlate-layout">
                 <div className="video-call-wrapper">
                     <VideoCall roomID={roomID} />
@@ -26,4 +26,3 @@ const LiveSlate = ({ roomID }) => {
 };
 
 export default LiveSlate;
-  

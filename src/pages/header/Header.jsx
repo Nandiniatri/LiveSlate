@@ -5,7 +5,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import { IoIosClose } from "react-icons/io";
 
-const Header = () => {
+const Header = ({roomID}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleShare = () => {
@@ -17,8 +17,11 @@ const Header = () => {
   }
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText("https://liveslate.app/invite/abc123");
-    alert("Link copied!");
+    // navigator.clipboard.writeText("https://liveslate.app/invite/abc123");
+    // alert("Link copied!");
+    const fullURL = `${window.location.origin}/room/${roomID}`;
+    console.log(fullURL);
+    navigator.clipboard.writeText(fullURL);
   }
 
   return (
@@ -50,7 +53,7 @@ const Header = () => {
           <div className="link-section">
             <input
               type="text"
-              value="https://liveslate.app/invite/abc123"
+              value={`${window.location.origin}/room/${roomID}`}
               readOnly
               className="invite-link"
             />
