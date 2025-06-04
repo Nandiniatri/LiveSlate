@@ -536,6 +536,7 @@ import { v4 as uuid } from "uuid";
 
 const socket = io("https://videocallbackend-rjrw.onrender.com"); // your backend
 
+// const ROOM_ID = "classroom-101"; // static room (or make dynamic)
 
 const VideoCall = ({roomID}) => {
   const localVideoRef = useRef(null);
@@ -543,8 +544,6 @@ const VideoCall = ({roomID}) => {
   const peersRef = useRef({});
   const [remoteStreams, setRemoteStreams] = useState({});
   const userId = useRef(uuid());
-  const ROOM_ID = `${roomID}`; // static room (or make dynamic);
-  console.log(ROOM_ID);;
   
 
   useEffect(() => {
@@ -560,7 +559,7 @@ const VideoCall = ({roomID}) => {
       }
 
       socket.emit("join-room", {
-        roomId: ROOM_ID,
+        roomId: roomID,
         userId: userId.current,
       });
     };
