@@ -26,4 +26,4 @@ const LiveSlate = ({ roomID }) => {
 };
 
 export default LiveSlate;
- 
+  
