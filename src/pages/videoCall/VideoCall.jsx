@@ -401,7 +401,7 @@ const VideoCall = ({roomID}) => {
   const remoteVideoRef = useRef(null);
   const peerConnection = useRef(null);
   const localStreamRef = useRef(null);
-  const [inCall, setInCall] = useState(false);
+  const [inCall, setInCall] = useState(false);  
 
   const createPeerConnection = () => {
     peerConnection.current = new RTCPeerConnection(servers);
