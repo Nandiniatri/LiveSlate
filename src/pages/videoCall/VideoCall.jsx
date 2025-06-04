@@ -538,12 +538,13 @@ const socket = io("https://videocallbackend-rjrw.onrender.com"); // your backend
 
 const ROOM_ID = "classroom-101"; // static room (or make dynamic)
 
-const VideoCall = () => {
+const VideoCall = ({roomID}) => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});
   const [remoteStreams, setRemoteStreams] = useState({});
   const userId = useRef(uuid());
+
   
 
   useEffect(() => {
