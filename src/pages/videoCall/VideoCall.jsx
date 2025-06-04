@@ -391,7 +391,7 @@
 
 import { io } from "socket.io-client";
 import { useRef, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+
 
 const socket = io("https://videocallbackend-rjrw.onrender.com");
 const servers = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
