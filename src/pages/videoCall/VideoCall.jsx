@@ -536,9 +536,9 @@ import { v4 as uuid } from "uuid";
 
 const socket = io("https://videocallbackend-rjrw.onrender.com"); // your backend
 
-// const ROOM_ID = "classroom-101"; // static room (or make dynamic)
+const ROOM_ID = "classroom-101"; // static room (or make dynamic)
 
-const VideoCall = ({roomID}) => {
+const VideoCall = () => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});
@@ -559,7 +559,7 @@ const VideoCall = ({roomID}) => {
       }
 
       socket.emit("join-room", {
-        roomId: roomID,
+        roomId: ROOM_ID,
         userId: userId.current,
       });
     };
