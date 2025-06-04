@@ -410,11 +410,11 @@ const VideoCall = ({roomID}) => {
       if (event.candidate) {
         socket.emit("signal", {
           roomID,
-          data: { candidate: event.candidate },
+          data : { candidate: event.candidate },
         });
       }
     };
-
+  
     peerConnection.current.ontrack = (event) => {
       if (remoteVideoRef.current) {
         remoteVideoRef.current.srcObject = event.streams[0];
