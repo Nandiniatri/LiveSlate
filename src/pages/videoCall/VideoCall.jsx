@@ -14,6 +14,18 @@ const VideoCall = ({ roomID }) => {
   const peersRef = useRef({});  // key: socketId, value: RTCPeerConnection
   const [remoteStreams, setRemoteStreams] = useState({}); // key: socketId, value: MediaStream
   const userId = useRef(uuid()); // unique id for this user
+  const [mute, setMute] = useState(false);
+
+
+  const toggleMute = () => {
+    if (localStreamRef.current) {
+      const audioTrack = localStreamRef.current.getAudioTracks()[0];
+      if (audioTrack) {
+        audioTrack.enabled = !audioTrack.enabled;
+        setMute(!audioTrack.enabled);
+      }
+    }
+  }
 
   useEffect(() => {
     const init = async () => {
@@ -167,7 +179,21 @@ const VideoCall = ({ roomID }) => {
 
   return (
     <div style={{ padding: "10px" }}>
-      <h2>📹 Classroom Video Call</h2>
+      <button
+        onClick={toggleMute}
+        style={{
+          marginBottom: "10px",
+          padding: "8px 16px",
+          backgroundColor: mute ? "red" : "green",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        {mute ? "Unmute" : "Mute"}
+      </button>
+
       <video
         ref={localVideoRef}
         autoPlay
