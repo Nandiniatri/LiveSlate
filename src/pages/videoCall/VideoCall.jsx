@@ -536,15 +536,15 @@ import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
 
-const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com"; // अपना backend URL दें
+const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
 
 const socket = io(SOCKET_SERVER_URL, {
   transports: ["websocket", "polling"],
 });
 
-const ROOM_ID = "classroom-101";
+// const ROOM_ID = "classroom-101";
 
-const VideoCall = () => {
+const VideoCall = ({roomID}) => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});  // key: socketId, value: RTCPeerConnection
@@ -565,7 +565,8 @@ const VideoCall = () => {
         }
 
         socket.emit("join-room", {
-          roomId: ROOM_ID,
+          // roomId: ROOM_ID,
+          roomId: roomID,
           userId: userId.current,
         });
       } catch (err) {
