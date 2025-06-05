@@ -8,7 +8,6 @@ const socket = io(SOCKET_SERVER_URL, {
   transports: ["websocket", "polling"],
 });
 
-// const ROOM_ID = "classroom-101";
 
 const VideoCall = ({roomID}) => {
   const localVideoRef = useRef(null);
