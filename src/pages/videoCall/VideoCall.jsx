@@ -242,27 +242,25 @@ import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
 
-const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
 
+const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
 const socket = io(SOCKET_SERVER_URL, { transports: ["websocket", "polling"] });
 
 const VideoCall = ({ roomID }) => {
-  const localVideoRef   = useRef(null);
-  const localStreamRef  = useRef(null);
-  const peersRef        = useRef({});                   // socketId ➜ RTCPeerConnection
-  const [remoteStreams, setRemoteStreams] = useState({}); // socketId ➜ MediaStream
-  const [mutedMap,      setMutedMap]      = useState({}); // socketId ➜ true/false
-  const [isMuted,       setIsMuted]       = useState(false);
+  const localVideoRef = useRef(null);
+  const localStreamRef = useRef(null);
+  const peersRef = useRef({});
+  const [remoteStreams, setRemoteStreams] = useState({});
+  const [mutedMap, setMutedMap] = useState({});
+  const [isMuted, setIsMuted] = useState(false);
   const userId = useRef(uuid());
 
-  /* ───────────────────────────── Init & Signalling ────────────────────────── */
   useEffect(() => {
     const init = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         localStreamRef.current = stream;
         if (localVideoRef.current) localVideoRef.current.srcObject = stream;
-
         socket.emit("join-room", { roomId: roomID, userId: userId.current });
       } catch (err) {
         console.error("Failed to get local media", err);
@@ -270,13 +268,12 @@ const VideoCall = ({ roomID }) => {
     };
     init();
 
-    /* -------- Existing signalling handlers (all-users, user-joined, signal) -------- */
     socket.on("all-users", (users) => {
       users.forEach(({ socketId }) => createOfferPeer(socketId));
     });
 
     socket.on("user-joined", ({ socketId }) => {
-      if (!peersRef.current[socketId]) createPeer(socketId);   // answer-side peer
+      if (!peersRef.current[socketId]) createPeer(socketId);
     });
 
     socket.on("signal", async ({ from, data }) => handleSignal(from, data));
@@ -297,7 +294,6 @@ const VideoCall = ({ roomID }) => {
       });
     });
 
-    /* ---------- 👇 NEW: receive mute status updates of any participant --------- */
     socket.on("user-muted-status", ({ socketId, muted }) => {
       setMutedMap((prev) => ({ ...prev, [socketId]: muted }));
     });
@@ -309,20 +305,16 @@ const VideoCall = ({ roomID }) => {
     };
   }, []);
 
-  /* ────────────────── Peer-connection helper functions ──────────────────── */
   const createPeer = (peerSocketId) => {
     const pc = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] });
-
     pc.onicecandidate = ({ candidate }) => {
       if (candidate) {
         socket.emit("signal", { to: peerSocketId, from: socket.id, data: { candidate } });
       }
     };
-
     pc.ontrack = (event) => {
       setRemoteStreams((prev) => ({ ...prev, [peerSocketId]: event.streams[0] }));
     };
-
     localStreamRef.current.getTracks().forEach((t) => pc.addTrack(t, localStreamRef.current));
     peersRef.current[peerSocketId] = pc;
     return pc;
@@ -337,7 +329,6 @@ const VideoCall = ({ roomID }) => {
 
   const handleSignal = async (peerSocketId, data) => {
     let pc = peersRef.current[peerSocketId] || createPeer(peerSocketId);
-
     if (data.sdp) {
       await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
       if (data.sdp.type === "offer") {
@@ -349,93 +340,52 @@ const VideoCall = ({ roomID }) => {
     if (data.candidate) await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
   };
 
-  /* ───────────────────── Mute / Un-mute Logic ───────────────────── */
   const toggleMute = () => {
     if (!localStreamRef.current) return;
     const audioTrack = localStreamRef.current.getAudioTracks()[0];
     if (!audioTrack) return;
-
-    audioTrack.enabled = !audioTrack.enabled;          // false ➜ muted
+    audioTrack.enabled = !audioTrack.enabled;
     const nowMuted = !audioTrack.enabled;
     setIsMuted(nowMuted);
-
-    /* 🔴 Broadcast to everyone */
     socket.emit("toggle-mute", { socketId: socket.id, muted: nowMuted });
-    /* ✅ Locally keep own status too */
     setMutedMap((prev) => ({ ...prev, [socket.id]: nowMuted }));
   };
 
-  /* ─────────────────────────── UI Render ─────────────────────────── */
   return (
-    <div style={{ padding: "10px" }}>
-      <h2>📹 Classroom Video Call</h2>
-
-      <button
-        onClick={toggleMute}
-        style={{
-          marginBottom: 10,
-          padding: "8px 16px",
-          background: isMuted ? "red" : "green",
-          color: "#fff",
-          border: "none",
-          borderRadius: 6,
-          cursor: "pointer",
-        }}
-      >
-        {isMuted ? "Unmute" : "Mute"}
-      </button>
-
-      {/* ── Local Video ── */}
-      <div style={{ position: "relative", marginBottom: 10 }}>
-        <video
-          ref={localVideoRef}
-          autoPlay
-          muted
-          playsInline
-          width={250}
-          style={{ border: "3px solid green" }}
-        />
-        {/* own mute badge */}
-        {mutedMap[socket.id] && (
-          <Badge />
-        )}
+    // <div className="video-call-container">
+    <>
+      <div className="video-header">
+        <button className={`mute-button ${isMuted ? "muted" : "unmuted"}`} onClick={toggleMute}>
+          {isMuted ? "Unmute" : "Mute"}
+        </button>
       </div>
 
-      {/* ── Remote Videos ── */}
-      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+      <div className="video-grid">
+        <div className="video-box">
+          <video ref={localVideoRef} autoPlay muted playsInline />
+          <p>You</p>
+          {mutedMap[socket.id] && <Badge />}
+        </div>
+
         {Object.entries(remoteStreams).map(([id, stream]) => (
-          <div key={id} style={{ position: "relative" }}>
+          <div className="video-box" key={id}>
             <video
               autoPlay
               playsInline
-              width={250}
               ref={(v) => v && (v.srcObject = stream)}
-              style={{ border: "2px solid blue" }}
             />
+            <p>{id}</p>
             {mutedMap[id] && <Badge />}
           </div>
         ))}
       </div>
-    </div>
+      {/* </div> */}
+    </>
   );
 };
 
-/* Small badge component */
 const Badge = () => (
-  <span
-    style={{
-      position: "absolute",
-      top: 8,
-      right: 8,
-      background: "rgba(0,0,0,0.6)",
-      color: "#fff",
-      fontSize: 12,
-      padding: "2px 6px",
-      borderRadius: 4,
-    }}
-  >
-    🔇
-  </span>
+  <span className="mute-badge">🔇</span>
 );
 
 export default VideoCall;
