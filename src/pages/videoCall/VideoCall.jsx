@@ -200,7 +200,7 @@ const VideoCall = ({ roomID }) => {
         muted
         playsInline
         width={250}
-        style={{ border: "3px solid green", marginBottom: "10px" }}
+        style={{marginBottom: "10px" }}
       />
       <div
         style={{
@@ -219,7 +219,6 @@ const VideoCall = ({ roomID }) => {
             ref={(video) => {
               if (video) video.srcObject = stream;
             }}
-            style={{ border: "2px solid blue" }}
           />
         ))}
       </div>
