@@ -8,8 +8,7 @@ const socket = io(SOCKET_SERVER_URL, {
   transports: ["websocket", "polling"],
 });
 
-
-const VideoCall = ({roomID}) => {
+const VideoCall = ({ roomID }) => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});  // key: socketId, value: RTCPeerConnection
@@ -30,7 +29,6 @@ const VideoCall = ({roomID}) => {
         }
 
         socket.emit("join-room", {
-          // roomId: ROOM_ID,
           roomId: roomID,
           userId: userId.current,
         });
