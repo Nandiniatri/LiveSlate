@@ -239,7 +239,7 @@
 //   const [inCall, setInCall] = useState(false);
 //   // const { roomID } = useParams();
 //   // console.log(roomID);
-  
+
 
 //   const startCall = () => {
 //     socket.emit("join-room", roomID);
@@ -414,7 +414,7 @@
 //         });
 //       }
 //     };
-  
+
 //     peerConnection.current.ontrack = (event) => {
 //       if (remoteVideoRef.current) {
 //         remoteVideoRef.current.srcObject = event.streams[0];
@@ -534,9 +534,11 @@ import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
 
-const socket = io("https://videocallbackend-rjrw.onrender.com"); // your backend
+// const socket = io("https://videocallbackend-rjrw.onrender.com");
+// const socket = io("*");
+const socket = io("http://localhost:5173");
 
-const ROOM_ID = "classroom-101"; // static room (or make dynamic)
+const ROOM_ID = "classroom-101";
 
 const VideoCall = () => {
   const localVideoRef = useRef(null);
