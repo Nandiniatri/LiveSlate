@@ -8,6 +8,12 @@ import { useState } from "react";
 const LiveSlate = ({ roomID }) => {
     const [username, setUsername] = useState("");
 
+    // Prompt only once when component mounts
+    useEffect(() => {
+        const name = prompt("Enter your name") || "Anonymous";
+        setUsername(name);
+    }, []);
+
     return (
         <div className="liveSlate-main-container">
             <Header roomID={roomID} />
