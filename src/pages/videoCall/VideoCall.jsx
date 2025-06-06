@@ -417,28 +417,43 @@
 
 
 
-// VideoCall.jsx
+
+
+
+
+
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
 
 const SOCKET_URL = "https://videocallbackend-rjrw.onrender.com";
-/* एक global socket instance रखो */
+/* Global socket instance */
 const socket = io(SOCKET_URL, { transports: ["websocket", "polling"] });
 
 function VideoCall({ roomID, username }) {
+  const userIdRef = useRef(uuid());  // Ek baar generate userId
+
   /* refs + states */
-  const localVideoRef   = useRef(null);
-  const localStreamRef  = useRef(null);
-  const peersRef        = useRef({});        // socketId → RTCPeerConnection
+  const localVideoRef = useRef(null);
+  const localStreamRef = useRef(null);
+  const peersRef = useRef({});        // socketId → RTCPeerConnection
   const [remoteStreams, setRemoteStreams] = useState({}); // socketId → MediaStream
-  const [nameMap,       setNameMap]       = useState({}); // socketId → username
-  const [mutedMap,      setMutedMap]      = useState({});
-  const [isMuted,       setIsMuted]       = useState(false);
+  const [nameMap, setNameMap] = useState({}); // socketId → username
+  const [mutedMap, setMutedMap] = useState({});
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    if (username) {
+      socket.emit("join-room", {
+        roomId: roomID,
+        userId: userIdRef.current,
+        username,
+      });
+    }
+  }, [roomID, username]);
 
   /* ---------- component mount ---------- */
   useEffect(() => {
-    /* 1. getUserMedia & join-room */
     (async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -447,28 +462,29 @@ function VideoCall({ roomID, username }) {
 
         socket.emit("join-room", {
           roomId: roomID,
-          userId: uuid(),      // कोई भी random client id (backend में जरूरत न हो तो हटा सकते)
-          username             // 🔴 भेजना ज़रूरी
+          userId: userIdRef.current,
+          username
         });
       } catch (e) {
         console.error("Media error:", e);
+        alert("Media device error. Please allow camera and microphone.");
       }
     })();
 
-    /* 2. socket listeners */
     socket.on("all-users", handleExistingUsers);
     socket.on("user-joined", handleUserJoined);
-    socket.on("signal",      ({ from, data }) => handleSignal(from, data));
-    socket.on("user-left",   handleUserLeft);
+    socket.on("signal", ({ from, data }) => handleSignal(from, data));
+    socket.on("user-left", handleUserLeft);
 
     socket.on("user-muted-status", ({ socketId, muted }) => {
       setMutedMap((p) => ({ ...p, [socketId]: muted }));
     });
 
-    /* 3. cleanup on unmount */
     return () => {
       socket.emit("leave-room", roomID);
+      // ⚠️ Agar dusre components socket use kar rahe hain to yahan disconnect carefully use karein
       socket.disconnect();
+
       Object.values(peersRef.current).forEach((pc) => pc.close());
       localStreamRef.current?.getTracks().forEach((t) => t.stop());
     };
@@ -512,7 +528,10 @@ function VideoCall({ roomID, username }) {
         handleUserLeft({ socketId });
     };
 
-    localStreamRef.current?.getTracks().forEach((t) => pc.addTrack(t, localStreamRef.current));
+    if (localStreamRef.current) {
+      localStreamRef.current.getTracks().forEach((t) => pc.addTrack(t, localStreamRef.current));
+    }
+
     peersRef.current[socketId] = pc;
     return pc;
   };
