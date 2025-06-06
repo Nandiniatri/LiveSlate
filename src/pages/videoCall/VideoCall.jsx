@@ -190,6 +190,7 @@ const VideoCall = ({ roomID , username }) => {
   const [mutedMap, setMutedMap] = useState({});
   const [isMuted, setIsMuted] = useState(false);
   const userId = useRef(uuid());
+  console.log(username);
 
   useEffect(() => {
     const init = async () => {
