@@ -6,10 +6,10 @@ import { IoMdSend } from "react-icons/io";
 
 const socket = io("https://chat-backend-52d6.onrender.com");
 
-function ChatBox() {
+function ChatBox({username , setUsername}) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef(null);
 
