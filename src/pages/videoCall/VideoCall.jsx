@@ -363,7 +363,7 @@ const VideoCall = ({ roomID }) => {
       <div className="video-grid">
         <div className="video-box">
           <video ref={localVideoRef} autoPlay muted playsInline />
-          <p>{socketId === myId ? "You" : socketId}</p>
+          <p>You</p>
           {mutedMap[socket.id] && <Badge />}
         </div>
 
