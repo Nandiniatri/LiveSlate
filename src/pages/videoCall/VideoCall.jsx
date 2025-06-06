@@ -314,12 +314,19 @@ const VideoCall = ({ roomID }) => {
     // Inform backend that user is leaving room explicitly
     socket.emit("leave-room", roomID);
 
-    // Close all peer connections
-    Object.values(peersRef.current).forEach((pc) => pc.close());
-    peersRef.current = {};
-
     // Disconnect socket to clean up listeners etc.
     socket.disconnect();
+
+    // Close all peer connections
+    // Object.values(peersRef.current).forEach((pc) => pc.close());
+    // peersRef.current = {};
+    Object.values(peersRef.current).forEach(peer => {
+      if (peer && peer.close) peer.close();
+    });
+
+    peersRef.current = {};
+    setRemoteStreams({});
+    setMutedMap({});
 
     // Redirect or reload page after call ends
     window.location.href = "/"; // Or use router if available
