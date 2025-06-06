@@ -758,3 +758,8 @@ textarea {
 .end-call-btn:hover {
   background-color: #c62828;
 }
+
+
+video {
+  background-color: transparent !important;
+}
