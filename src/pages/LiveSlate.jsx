@@ -39,7 +39,6 @@
 
 
 import { useState, useEffect } from "react";
-import Header from "./Header";
 import VideoCall from "./videoCall/VideoCall";
 import Canvas from "./canvas/Canvas";
 import ChatBox from "./chatBox/ChatBox";
