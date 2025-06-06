@@ -175,88 +175,128 @@
 
 
 
+
+
+
+// VideoCall.jsx
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
 
-const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
-const socket = io(SOCKET_SERVER_URL, { transports: ["websocket", "polling"] });
+/* 🔗 अपनी signaling-server URL डालें */
+const SOCKET_URL = "https://videocallbackend-rjrw.onrender.com";
 
-const VideoCall = ({ roomID , username }) => {
-  const localVideoRef = useRef(null);
-  const localStreamRef = useRef(null);
-  const peersRef = useRef({});
-  const [remoteStreams, setRemoteStreams] = useState({});
-  const [mutedMap, setMutedMap] = useState({});
-  const [isMuted, setIsMuted] = useState(false);
-  const userId = useRef(uuid());
-  console.log(username);
+/* एक ही socket instance पूरे module में */
+const socket = io(SOCKET_URL, { transports: ["websocket", "polling"] });
 
+function VideoCall({ roomID, username }) {
+  /* -------- Refs & States -------- */
+  const localVideoRef   = useRef(null);
+  const localStreamRef  = useRef(null);
+  const peersRef        = useRef({});            // socketId ➜ RTCPeerConnection
+  const [remoteStreams, setRemoteStreams] = useState({}); // socketId ➜ MediaStream
+  const [nameMap,       setNameMap]       = useState({}); // socketId ➜ username
+  const [mutedMap,      setMutedMap]      = useState({}); // socketId ➜ bool
+  const [isMuted,       setIsMuted]       = useState(false);
+  const myId = useRef(uuid());                     // arbitrary client-side id
+
+  /* ---------- 1. initial media + join-room ---------- */
   useEffect(() => {
-    const init = async () => {
+    (async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         localStreamRef.current = stream;
         if (localVideoRef.current) localVideoRef.current.srcObject = stream;
-        socket.emit("join-room", { roomId: roomID, userId: userId.current });
+
+        socket.emit("join-room", {
+          roomId: roomID,
+          userId: myId.current,        // aapka khud ka uuid
+          username                     // prop se aaya naam
+        });
       } catch (err) {
-        console.error("Failed to get local media", err);
+        console.error("getUserMedia fail:", err);
       }
-    };
-    init();
+    })();
 
-    socket.on("all-users", (users) => {
-      users.forEach(({ socketId }) => createOfferPeer(socketId));
-    });
+    /* ---------- socket listeners ---------- */
+    socket.on("all-users", handleExistingUsers);
+    socket.on("user-joined", handleUserJoined);
+    socket.on("signal",      ({ from, data }) => handleSignal(from, data));
+    socket.on("user-left",   handleUserLeft);
+    socket.on("user-muted-status", ({ socketId, muted }) =>
+      setMutedMap((p) => ({ ...p, [socketId]: muted }))
+    );
 
-    socket.on("user-joined", ({ socketId }) => {
-      if (!peersRef.current[socketId]) createPeer(socketId);
-    });
-
-    socket.on("signal", async ({ from, data }) => handleSignal(from, data));
-
-    socket.on("user-left", (userId) => {
-      // Clean up peer connection and streams for the user who left
-      removePeer(userId);
-    });
-
-    socket.on("user-muted-status", ({ socketId, muted }) => {
-      setMutedMap((prev) => ({ ...prev, [socketId]: muted }));
-    });
-
+    /* ---------- cleanup on unmount ---------- */
     return () => {
-      // Cleanup on unmount
+      socket.emit("leave-room", roomID);
       socket.disconnect();
       Object.values(peersRef.current).forEach((pc) => pc.close());
       peersRef.current = {};
+      localStreamRef.current?.getTracks().forEach((t) => t.stop());
     };
-  }, [roomID]);
+  }, [roomID, username]);
 
+  /* ---------- handlers ---------- */
+
+  /* A. existing users list */
+  const handleExistingUsers = (users) => {
+    const newMap = {};
+    users.forEach(({ socketId, username }) => {
+      newMap[socketId] = username;
+      createOfferPeer(socketId);
+    });
+    setNameMap((p) => ({ ...p, ...newMap }));
+  };
+
+  /* B. when new user joins */
+  const handleUserJoined = ({ socketId, username }) => {
+    setNameMap((p) => ({ ...p, [socketId]: username }));
+    if (!peersRef.current[socketId]) createPeer(socketId);
+  };
+
+  /* C. when user leaves */
+  const handleUserLeft = ({ socketId }) => {
+    removePeer(socketId);
+    setNameMap((p) => {
+      const c = { ...p };
+      delete c[socketId];
+      return c;
+    });
+  };
+
+  /* create peer (answer side) */
   const createPeer = (peerSocketId) => {
-    const pc = new RTCPeerConnection({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] });
+    const pc = new RTCPeerConnection({
+      iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+    });
 
     pc.onicecandidate = ({ candidate }) => {
-      if (candidate) {
-        socket.emit("signal", { to: peerSocketId, from: socket.id, data: { candidate } });
-      }
+      if (candidate) socket.emit("signal", {
+        to: peerSocketId,
+        from: socket.id,
+        data: { candidate }
+      });
     };
 
-    pc.ontrack = (event) => {
-      setRemoteStreams((prev) => ({ ...prev, [peerSocketId]: event.streams[0] }));
-    };
+    pc.ontrack = (e) =>
+      setRemoteStreams((p) => ({ ...p, [peerSocketId]: e.streams[0] }));
 
     pc.oniceconnectionstatechange = () => {
-      if (["failed", "disconnected", "closed"].includes(pc.iceConnectionState)) {
-        removePeer(peerSocketId);
-      }
+      if (["failed", "disconnected", "closed"].includes(pc.iceConnectionState))
+        handleUserLeft({ socketId: peerSocketId });
     };
 
-    localStreamRef.current.getTracks().forEach((t) => pc.addTrack(t, localStreamRef.current));
+    /* add local tracks */
+    localStreamRef.current?.getTracks().forEach((t) =>
+      pc.addTrack(t, localStreamRef.current)
+    );
 
     peersRef.current[peerSocketId] = pc;
     return pc;
   };
 
+  /* caller side create offer */
   const createOfferPeer = async (peerSocketId) => {
     const pc = createPeer(peerSocketId);
     const offer = await pc.createOffer();
@@ -264,8 +304,10 @@ const VideoCall = ({ roomID , username }) => {
     socket.emit("signal", { to: peerSocketId, from: socket.id, data: { sdp: offer } });
   };
 
+  /* handle incoming offer/answer/candidate */
   const handleSignal = async (peerSocketId, data) => {
     let pc = peersRef.current[peerSocketId] || createPeer(peerSocketId);
+
     if (data.sdp) {
       await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
       if (data.sdp.type === "offer") {
@@ -277,131 +319,92 @@ const VideoCall = ({ roomID , username }) => {
     if (data.candidate) await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
   };
 
+  /* remove peer util */
+  const removePeer = (socketId) => {
+    peersRef.current[socketId]?.close();
+    delete peersRef.current[socketId];
+
+    setRemoteStreams((p) => {
+      const c = { ...p };
+      delete c[socketId];
+      return c;
+    });
+
+    setMutedMap((p) => {
+      const c = { ...p };
+      delete c[socketId];
+      return c;
+    });
+  };
+
+  /* Mute/unmute local mic */
   const toggleMute = () => {
-    if (!localStreamRef.current) return;
-    const audioTrack = localStreamRef.current.getAudioTracks()[0];
-    if (!audioTrack) return;
-    audioTrack.enabled = !audioTrack.enabled;
-    const nowMuted = !audioTrack.enabled;
+    const track = localStreamRef.current?.getAudioTracks()[0];
+    if (!track) return;
+    track.enabled = !track.enabled;
+    const nowMuted = !track.enabled;
     setIsMuted(nowMuted);
     socket.emit("toggle-mute", { socketId: socket.id, muted: nowMuted });
-    setMutedMap((prev) => ({ ...prev, [socket.id]: nowMuted }));
+    setMutedMap((p) => ({ ...p, [socket.id]: nowMuted }));
   };
 
-  const removePeer = (userId) => {
-    const pc = peersRef.current[userId];
-    if (pc) pc.close();
-    delete peersRef.current[userId];
-
-    setRemoteStreams((prev) => {
-      const copy = { ...prev };
-      delete copy[userId];
-      return copy;
-    });
-
-    setMutedMap((prev) => {
-      const copy = { ...prev };
-      delete copy[userId];
-      return copy;
-    });
-  };
-
-  // const handleEndCall = () => {
-  //   // Stop all local video/audio tracks
-  //   if (localStreamRef.current) {
-  //     localStreamRef.current.getTracks().forEach((track) => track.stop());
-  //   }
-
-  //   // Inform backend that user is leaving room explicitly
-  //   socket.emit("leave-room", roomID);
-
-  //   // Close all peer connections
-  //   Object.values(peersRef.current).forEach((pc) => pc.close());
-  //   peersRef.current = {};
-
-  //   // Disconnect socket to clean up listeners etc.
-  //   socket.disconnect();
-
-  //   // Redirect or reload page after call ends
-  //   window.location.href = "/"; // Or use router if available
-  // };
-
+  /* End call */
   const handleEndCall = () => {
-    // Stop video/audio
-    if (localStreamRef.current) {
-      localStreamRef.current.getTracks().forEach(track => track.stop());
-      localStreamRef.current = null;
-    }
-
-    // Remove all UI data BEFORE redirect
-    setRemoteStreams({});
-    setMutedMap({});
-    peersRef.current = {};
-
-    // Emit leave-room and disconnect
+    localStreamRef.current?.getTracks().forEach((t) => t.stop());
     socket.emit("leave-room", roomID);
     socket.disconnect();
-
-    // Slight delay optional for smoother exit (or remove delay entirely)
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 100); // just 100ms or even 0
+    Object.values(peersRef.current).forEach((pc) => pc.close());
+    peersRef.current = {};
+    setRemoteStreams({});
+    window.location.href = "/";   // ya navigate("/")
   };
 
-
+  /* ---------- UI ---------- */
   return (
     <>
       <div className="video-header">
-        <button className={`mute-button ${isMuted ? "muted" : "unmuted"}`} onClick={toggleMute}>
+        <button className={`mute-btn ${isMuted ? "muted" : ""}`} onClick={toggleMute}>
           {isMuted ? "Unmute" : "Mute"}
         </button>
         <button className="end-call-btn" onClick={handleEndCall}>
-          End Call
+          End&nbsp;Call
         </button>
       </div>
 
       <div className="video-grid">
+        {/* Local video */}
         <div className="video-box">
-          <video ref={localVideoRef} autoPlay muted playsInline />
-          <p>You</p>
-          {mutedMap[socket.id] && <Badge />}
+          <video
+            ref={localVideoRef}
+            autoPlay
+            muted
+            playsInline
+            style={{ display: localStreamRef.current ? "block" : "none" }}
+          />
+          <p>{username || "You"}</p>
+          {mutedMap[socket.id] && <MuteBadge />}
         </div>
 
-        {/* {Object.entries(remoteStreams).map(([id, stream]) => (
-          <div className="video-box" key={id}>
+        {/* Remote users */}
+        {Object.entries(remoteStreams).map(([sid, stream]) => (
+          <div className="video-box" key={sid}>
             <video
               autoPlay
               playsInline
-              ref={(v) => {
-                if (v) v.srcObject = stream;
-              }}
+              ref={(v) => v && (v.srcObject = stream)}
+              style={{ display: stream ? "block" : "none" }}
             />
-            <p>{id}</p>
-            {mutedMap[id] && <Badge />}
-          </div>
-        ))} */}
-        {Object.entries(remoteStreams).map(([id, stream]) => (
-          <div className="video-box" key={id}>
-            <video
-              autoPlay
-              playsInline
-              ref={(v) => {
-                if (v) {
-                  v.srcObject = stream;
-                  if (!stream) v.style.display = "none"; // hide if no stream
-                }
-              }}
-            />
-            <p>{id}</p>
-            {mutedMap[id] && <Badge />}
+            <p>{nameMap[sid] || "Participant"}</p>
+            {mutedMap[sid] && <MuteBadge />}
           </div>
         ))}
-
       </div>
     </>
   );
-};
+}
 
-const Badge = () => <span className="mute-badge">🔇</span>;
+/* Simple 🔇 icon */
+const MuteBadge = () => <span style={{ color: "red" }}>🔇</span>;
 
 export default VideoCall;
+
