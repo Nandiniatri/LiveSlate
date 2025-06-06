@@ -182,7 +182,7 @@ import { v4 as uuid } from "uuid";
 const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
 const socket = io(SOCKET_SERVER_URL, { transports: ["websocket", "polling"] });
 
-const VideoCall = ({ roomID }) => {
+const VideoCall = ({ roomID , username }) => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});
