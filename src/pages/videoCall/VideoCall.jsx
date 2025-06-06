@@ -305,32 +305,48 @@ const VideoCall = ({ roomID }) => {
     });
   };
 
+  // const handleEndCall = () => {
+  //   // Stop all local video/audio tracks
+  //   if (localStreamRef.current) {
+  //     localStreamRef.current.getTracks().forEach((track) => track.stop());
+  //   }
+
+  //   // Inform backend that user is leaving room explicitly
+  //   socket.emit("leave-room", roomID);
+
+  //   // Close all peer connections
+  //   Object.values(peersRef.current).forEach((pc) => pc.close());
+  //   peersRef.current = {};
+
+  //   // Disconnect socket to clean up listeners etc.
+  //   socket.disconnect();
+
+  //   // Redirect or reload page after call ends
+  //   window.location.href = "/"; // Or use router if available
+  // };
+
   const handleEndCall = () => {
-    // Stop all local video/audio tracks
+    // Stop video/audio
     if (localStreamRef.current) {
-      localStreamRef.current.getTracks().forEach((track) => track.stop());
+      localStreamRef.current.getTracks().forEach(track => track.stop());
+      localStreamRef.current = null;
     }
 
-    // Inform backend that user is leaving room explicitly
-    socket.emit("leave-room", roomID);
-
-    // Disconnect socket to clean up listeners etc.
-    socket.disconnect();
-
-    // Close all peer connections
-    // Object.values(peersRef.current).forEach((pc) => pc.close());
-    // peersRef.current = {};
-    Object.values(peersRef.current).forEach(peer => {
-      if (peer && peer.close) peer.close();
-    });
-
-    peersRef.current = {};
+    // Remove all UI data BEFORE redirect
     setRemoteStreams({});
     setMutedMap({});
+    peersRef.current = {};
 
-    // Redirect or reload page after call ends
-    window.location.href = "/"; // Or use router if available
+    // Emit leave-room and disconnect
+    socket.emit("leave-room", roomID);
+    socket.disconnect();
+
+    // Slight delay optional for smoother exit (or remove delay entirely)
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 100); // just 100ms or even 0
   };
+
 
   return (
     <>
@@ -350,7 +366,7 @@ const VideoCall = ({ roomID }) => {
           {mutedMap[socket.id] && <Badge />}
         </div>
 
-        {Object.entries(remoteStreams).map(([id, stream]) => (
+        {/* {Object.entries(remoteStreams).map(([id, stream]) => (
           <div className="video-box" key={id}>
             <video
               autoPlay
@@ -362,7 +378,24 @@ const VideoCall = ({ roomID }) => {
             <p>{id}</p>
             {mutedMap[id] && <Badge />}
           </div>
+        ))} */}
+        {Object.entries(remoteStreams).map(([id, stream]) => (
+          <div className="video-box" key={id}>
+            <video
+              autoPlay
+              playsInline
+              ref={(v) => {
+                if (v) {
+                  v.srcObject = stream;
+                  if (!stream) v.style.display = "none"; // hide if no stream
+                }
+              }}
+            />
+            <p>{id}</p>
+            {mutedMap[id] && <Badge />}
+          </div>
         ))}
+
       </div>
     </>
   );
