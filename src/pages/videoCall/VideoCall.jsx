@@ -351,12 +351,35 @@ const VideoCall = ({ roomID }) => {
     setMutedMap((prev) => ({ ...prev, [socket.id]: nowMuted }));
   };
 
+  const handleEndCall = () => {
+    // Stop all local video/audio tracks
+    if (localStreamRef.current) {
+      localStreamRef.current.getTracks().forEach(track => track.stop());
+    }
+
+    // Emit disconnect event (optional, if backend handles cleanup)
+    socket.emit("leave-room", roomID);
+
+    // Close all peer connections
+    Object.values(peersRef.current).forEach(peer => {
+      if (peer.peerConnection) {
+        peer.peerConnection.close();
+      }
+    });
+
+    // Optionally reload or redirect
+    window.location.href = "/"; // or navigate to lobby
+  }
+
   return (
     // <div className="video-call-container">
     <>
       <div className="video-header">
         <button className={`mute-button ${isMuted ? "muted" : "unmuted"}`} onClick={toggleMute}>
           {isMuted ? "Unmute" : "Mute"}
+        </button>
+        <button className="end-call-btn" onClick={handleEndCall}>
+          End Call
         </button>
       </div>
 

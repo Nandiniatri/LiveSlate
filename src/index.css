@@ -742,3 +742,19 @@ textarea {
   bottom: 15px;
   text-align: end;
 }
+
+.end-call-btn {
+  background-color: #e53935;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.end-call-btn:hover {
+  background-color: #c62828;
+}
