@@ -213,7 +213,7 @@ const VideoCall = ({ roomID }) => {
   const peersRef = useRef({});
   const [remoteStreams, setRemoteStreams] = useState({});
   const [mutedMap, setMutedMap] = useState({});
-  const [usernamesMap, setUsernamesMap] = useState({}); // ✅ New
+  const [usernamesMap, setUsernamesMap] = useState({});
   const [isMuted, setIsMuted] = useState(false);
   const userId = useRef(uuid());
   const { username } = useUsername();
@@ -227,7 +227,7 @@ const VideoCall = ({ roomID }) => {
         socket.emit("join-room", {
           roomId: roomID,
           userId: userId.current,
-          username, // ✅ Send to backend
+          username,
         });
       } catch (err) {
         console.error("Failed to get local media", err);
@@ -399,7 +399,7 @@ const VideoCall = ({ roomID }) => {
                 }
               }}
             />
-            <p className="name-tag">{usernamesMap[id] || "User"}</p>
+            <p className="name-tag">{usernamesMap[id]}</p>
             {mutedMap[id] && <Badge />}
           </div>
         ))}
