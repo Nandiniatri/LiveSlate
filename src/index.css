@@ -320,11 +320,11 @@ textarea {
 .end-call-btn {
   flex: 1;
   min-width: 100px;
-  padding: 10px 16px;
+  /* padding: 10px 16px; */
   border: none;
   border-radius: 10px;
   /* font-weight: bold; */
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -409,7 +409,8 @@ textarea {
   font-size: 12px;
 
 }
-.videoCall-name{
+
+.videoCall-name {
   border: solid;
 }
 
@@ -420,6 +421,33 @@ textarea {
   margin-top: 2rem;
 }
 
+.video-toggle-button.video-on {
+  background: linear-gradient(to right, #4a6cf7, #5f7df9);
+  color: white;
+  padding: 10px 16px;
+  min-width: 100px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-toggle-button.video-off {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 16px;
+  min-width: 100px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 .mute-button.unmuted {
   background: linear-gradient(to right, #4a6cf7, #5f7df9);
