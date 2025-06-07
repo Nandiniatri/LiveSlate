@@ -3,23 +3,25 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import EmojiPicker from "emoji-picker-react";
 import { IoMdSend } from "react-icons/io";
+import { useUsername } from "../../context/UsernamePrompt";
 
-const socket = io("https://chat-backend-52d6.onrender.com");
+// const socket = io("https://chat-backend-52d6.onrender.com");
 
 function ChatBox() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef(null);
+  const { username , socket } = useUsername();
 
-  useEffect(() => {
-    const name = prompt("Enter your name:");
-    console.log(name);
+  // useEffect(() => {
+  //   const name = prompt("Enter your name:");
+  //   console.log(name);
 
-    setUsername(name || "Anonymous");
-    socket.emit("join", name || "Anonymous");
-  }, []);
+  //   setUsername(name || "Anonymous");
+  //   socket.emit("join", name || "Anonymous");
+  // }, []);
 
 
   useEffect(() => {

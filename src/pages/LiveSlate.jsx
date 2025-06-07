@@ -3,8 +3,6 @@ import Canvas from "./canvas/Canvas";
 import ChatBox from "./chatBox/ChatBox";
 import Header from "./header/Header";
 
-
-
 const LiveSlate = ({ roomID }) => {
     
     return (
