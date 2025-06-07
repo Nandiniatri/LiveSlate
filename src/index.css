@@ -351,29 +351,51 @@ textarea {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  padding: 1rem;
+  /* padding: 1rem;/ */
   width: 100%;
   border: solid blue;
   height: 70vh;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  overflow-y: auto;
+  /* Optional scroll if many videos */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.video-grid::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 
 .video-box {
-  position: relative;
+  /* position: relative;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
   background-color: #000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); */
+  position: relative;
+  background-color: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  /* Set max size */
+  height: 180px;
+
 }
 
 .local-video,
 .remote-video {
   width: 100%;
   height: 100%;
+  /* object-fit: cover;
+  display: block; */
   object-fit: cover;
-  display: block;
+  border-radius: 12px;
 }
 
 
@@ -499,6 +521,7 @@ textarea {
 .control-btn.end-call {
   background-color: #d93025;
 }
+
 .control-btn.end-call:hover {
   background-color: #b3261e;
 }
