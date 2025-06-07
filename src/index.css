@@ -349,24 +349,19 @@ textarea {
 
 .video-grid {
   display: grid;
-  gap: 1rem;
+  gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  /* padding: 1rem;/ */
   width: 100%;
-  border: solid blue;
+  /* border: solid blue; */
   height: 70vh;
   /* overflow-y: scroll; */
   overflow-y: auto;
-  /* Optional scroll if many videos */
   scrollbar-width: none;
-  /* Firefox */
   -ms-overflow-style: none;
-  /* IE and Edge */
 }
 
 .video-grid::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Opera */
 }
 
 
