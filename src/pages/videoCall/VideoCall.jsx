@@ -399,7 +399,7 @@ const VideoCall = ({ roomID }) => {
                 }
               }}
             />
-            <p className="name-tag">{usernamesMap[id] || "User"}</p> {/* ✅ Show name */}
+            <p className="name-tag">{usernamesMap[id] || "User"}</p>
             {mutedMap[id] && <Badge />}
           </div>
         ))}
