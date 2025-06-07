@@ -226,8 +226,8 @@
 //   const userId = useRef(uuid());
 //   const { username } = useUsername();
 //   console.log(usernamesMap);
-  
-  
+
+
 
 //   useEffect(() => {
 //     const init = async () => {
@@ -443,7 +443,7 @@ const VideoCall = ({ roomID }) => {
   const [mutedMap, setMutedMap] = useState({});
   const [usernamesMap, setUsernamesMap] = useState({});
   const [isMuted, setIsMuted] = useState(false);
-  const [isVideoOff, setIsVideoOff] = useState(false); // ✅ New State
+  const [isVideoOff, setIsVideoOff] = useState(false);
   const userId = useRef(uuid());
   const { username } = useUsername();
 
@@ -600,20 +600,6 @@ const VideoCall = ({ roomID }) => {
 
   return (
     <>
-      <div className="video-controls">
-        <button onClick={toggleMute} className={`mute-button ${isMuted ? "muted" : "unmuted"}`}>
-          {isMuted ? "Unmute" : "Mute"}
-        </button>
-
-        <button onClick={toggleVideo} className={`video-toggle-button ${isVideoOff ? "video-off" : "video-on"}`}>
-          {isVideoOff ? "Start Video" : "Stop Video"}
-        </button>
-
-        <button className="end-call-btn" onClick={handleEndCall}>
-          End Call
-        </button>
-      </div>
-
       <div className="video-grid">
         <div className="video-box">
           <video ref={localVideoRef} autoPlay muted playsInline className="local-video" />
@@ -639,6 +625,46 @@ const VideoCall = ({ roomID }) => {
           </div>
         ))}
       </div>
+
+      {/* <div className="video-controls">
+        <button onClick={toggleMute} className={`mute-button ${isMuted ? "muted" : "unmuted"}`}>
+          {isMuted ? "Unmute" : "Mute"}
+        </button>
+
+        <button onClick={toggleVideo} className={`video-toggle-button ${isVideoOff ? "video-off" : "video-on"}`}>
+          {isVideoOff ? "Start Video" : "Stop Video"}
+        </button>
+
+        <button className="end-call-btn" onClick={handleEndCall}>
+          End Call
+        </button>
+      </div> */}
+      <div className="video-controls">
+        <button
+          onClick={toggleMute}
+          className={`control-btn ${isMuted ? "muted" : ""}`}
+          title={isMuted ? "Unmute" : "Mute"}
+        >
+          <i className={`fas ${isMuted ? "fa-microphone-slash" : "fa-microphone"}`}></i>
+        </button>
+
+        <button
+          onClick={toggleVideo}
+          className={`control-btn ${isVideoOff ? "video-off" : ""}`}
+          title={isVideoOff ? "Start Video" : "Stop Video"}
+        >
+          <i className={`fas ${isVideoOff ? "fa-video-slash" : "fa-video"}`}></i>
+        </button>
+
+        <button
+          className="control-btn end-call"
+          onClick={handleEndCall}
+          title="End Call"
+        >
+          <i className="fas fa-phone-slash"></i>
+        </button>
+      </div>
+
     </>
   );
 };
