@@ -205,11 +205,12 @@
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
+import { useUsername } from "../../context/UsernamePrompt";
 
 const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
 const socket = io(SOCKET_SERVER_URL, { transports: ["websocket", "polling"] });
 
-const VideoCall = ({ roomID, username }) => {
+const VideoCall = ({ roomID}) => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});
@@ -217,6 +218,9 @@ const VideoCall = ({ roomID, username }) => {
   const [mutedMap, setMutedMap] = useState({});
   const [isMuted, setIsMuted] = useState(false);
   const userId = useRef(uuid());
+  const { username } = useUsername();
+  // console.log(username);
+  
 
   useEffect(() => {
     const init = async () => {
@@ -363,7 +367,7 @@ const VideoCall = ({ roomID, username }) => {
       <div className="video-grid">
         <div className="video-box">
           <video ref={localVideoRef} autoPlay muted playsInline className="local-video" />
-          <p>You</p>
+          <p className="name-tag">{username || "You"}</p>
           {mutedMap[socket.id] && <Badge />}
         </div>
 

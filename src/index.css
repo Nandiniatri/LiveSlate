@@ -469,7 +469,16 @@ textarea {
   font-size: 12px;
 
 }
+.videoCall-name{
+  border: solid;
+}
 
+.loading {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
 
 
 /* .local-video {
