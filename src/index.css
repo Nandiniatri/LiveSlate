@@ -507,73 +507,61 @@ textarea {
   background-color: #4a6cf7;
 }
 
+/* Grid layout for all videos */
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  padding: 1rem;
 }
 
-/* ✅ Updated video box style with fixed aspect ratio */
+/* Individual video box with fixed aspect ratio */
 .video-box {
-  /* position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  text-align: center;
-  border: 2px solid red;
-  background: black;
-  aspect-ratio: 16 / 9;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  width: 100%;
-  height: auto;
-  max-height: 250px;
-  border: 2px solid red;
+  position: relative;
+  aspect-ratio: 16 / 9;           /* Ensures 16:9 ratio */
+  border: 2px solid #c62828;
   border-radius: 8px;
   overflow: hidden;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
-/* ✅ Video fills the box without distortion */
+/* Video fills the box without stretching */
 .video-box video {
-  /* width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px; */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* ensures it covers properly without stretching */
-  border-radius: 8px;
-  background-color: black;
+  display: block;
 }
 
-/* Label like 'You' or socketId */
-.video-box p {
-  margin: 8px 0 0;
-  font-weight: 500;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 2px 8px;
-  border-radius: 4px;
-  align-self: flex-start;
-  margin-left: 10px;
+/* Name tag shown at bottom-left corner */
+.name-tag {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 3px 8px;
   font-size: 14px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  pointer-events: none;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Optional: mute badge or other overlays can go here */
 .mute-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  padding: 4px 8px;
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #c62828;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 
@@ -615,51 +603,7 @@ textarea {
 
 
 
-/* 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999;
-}
 
-.modal-content {
-  background-color: rgba(30, 30, 30, 0.9);
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-} */
-
-
-
-/* .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid;
-}
-
-.modal-content {
-  background-color: #222;
-  color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-} */
 
 
 .modal-overlay {
@@ -757,9 +701,4 @@ textarea {
 
 .end-call-btn:hover {
   background-color: #c62828;
-}
-
-
-video {
-  background-color: transparent !important;
 }
