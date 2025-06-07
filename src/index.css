@@ -435,8 +435,8 @@ textarea {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.video-toggle-button.video-off {
-  background-color: #f39c12;
+/* .video-toggle-button.video-off {
+  background: linear-gradient(to right, #4a6cf7, #5f7df9);
   color: white;
   padding: 10px 16px;
   min-width: 100px;
@@ -447,7 +447,7 @@ textarea {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .mute-button.unmuted {
   background: linear-gradient(to right, #4a6cf7, #5f7df9);
