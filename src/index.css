@@ -558,7 +558,7 @@ textarea {
   top: 6px;
   right: 6px;
   background: rgba(255, 255, 255, 0.8);
-  color: #c62828;
+  /* color: #c62828; */
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: bold;
