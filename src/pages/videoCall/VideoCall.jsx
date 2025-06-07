@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 const SOCKET_SERVER_URL = "https://videocallbackend-rjrw.onrender.com";
 const socket = io(SOCKET_SERVER_URL, { transports: ["websocket", "polling"] });
 
-const VideoCall = ({ roomID , username }) => {
+const VideoCall = ({ roomID, username }) => {
   const localVideoRef = useRef(null);
   const localStreamRef = useRef(null);
   const peersRef = useRef({});
@@ -166,7 +166,8 @@ const VideoCall = ({ roomID , username }) => {
 
       <div className="video-grid">
         <div className="video-box">
-          <video ref={localVideoRef} autoPlay muted playsInline />
+          {/* <video ref={localVideoRef} autoPlay muted playsInline /> */}
+          <video ref={localVideoRef} autoPlay muted playsInline className="local-video" />
           <p>You</p>
           {mutedMap[socket.id] && <Badge />}
         </div>
@@ -176,10 +177,11 @@ const VideoCall = ({ roomID , username }) => {
             <video
               autoPlay
               playsInline
+              className="remote-video"
               ref={(v) => {
                 if (v) {
                   v.srcObject = stream;
-                  if (!stream) v.style.display = "none"; // hide if no stream
+                  if (!stream) v.style.display = "none";
                 }
               }}
             />
@@ -427,22 +429,22 @@ export default VideoCall;
 
 
 
-  // const handleEndCall = () => {
-  //   // Stop all local video/audio tracks
-  //   if (localStreamRef.current) {
-  //     localStreamRef.current.getTracks().forEach((track) => track.stop());
-  //   }
+// const handleEndCall = () => {
+//   // Stop all local video/audio tracks
+//   if (localStreamRef.current) {
+//     localStreamRef.current.getTracks().forEach((track) => track.stop());
+//   }
 
-  //   // Inform backend that user is leaving room explicitly
-  //   socket.emit("leave-room", roomID);
+//   // Inform backend that user is leaving room explicitly
+//   socket.emit("leave-room", roomID);
 
-  //   // Close all peer connections
-  //   Object.values(peersRef.current).forEach((pc) => pc.close());
-  //   peersRef.current = {};
+//   // Close all peer connections
+//   Object.values(peersRef.current).forEach((pc) => pc.close());
+//   peersRef.current = {};
 
-  //   // Disconnect socket to clean up listeners etc.
-  //   socket.disconnect();
+//   // Disconnect socket to clean up listeners etc.
+//   socket.disconnect();
 
-  //   // Redirect or reload page after call ends
-  //   window.location.href = "/"; // Or use router if available
-  // };
+//   // Redirect or reload page after call ends
+//   window.location.href = "/"; // Or use router if available
+// };
