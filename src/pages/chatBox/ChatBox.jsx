@@ -6,10 +6,10 @@ import { IoMdSend } from "react-icons/io";
 
 const socket = io("https://chat-backend-52d6.onrender.com");
 
-function ChatBox({username , setUsername}) {
+function ChatBox() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  // const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -20,6 +20,7 @@ function ChatBox({username , setUsername}) {
     setUsername(name || "Anonymous");
     socket.emit("join", name || "Anonymous");
   }, []);
+
 
   useEffect(() => {
     axios
