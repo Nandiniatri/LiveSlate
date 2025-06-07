@@ -314,6 +314,7 @@ textarea {
   justify-content: center;
   gap: 12px;
   margin-bottom: 16px;
+  border: solid;
 }
 
 .mute-button,
@@ -353,6 +354,7 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   padding: 1rem;
   width: 100%;
+  border: solid blue;
 }
 
 
@@ -435,19 +437,19 @@ textarea {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* .video-toggle-button.video-off {
+.video-toggle-button.video-off {
   background: linear-gradient(to right, #4a6cf7, #5f7df9);
   color: white;
   padding: 10px 16px;
   min-width: 100px;
   border: none;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 13.8px;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-} */
+}
 
 .mute-button.unmuted {
   background: linear-gradient(to right, #4a6cf7, #5f7df9);
