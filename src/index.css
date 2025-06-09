@@ -675,18 +675,19 @@ textarea {
   }
 
   .video-call-wrapper {
-    height: 60vh;
+    height: 60vh !important;
     display: flex;
     flex-direction: row;
-    border: solid;
+    border: solid red;
   }
 
   .video-grid {
-    height: 35vh;
-    border: solid;
+    height: 22vh;
+    border: solid blue;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    padding: 0px;
   }
 
   .video-controls {
