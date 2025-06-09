@@ -7,7 +7,7 @@ import { useUsername } from "../../context/UsernamePrompt";
 
 // const socket = io("https://chat-backend-52d6.onrender.com");
 
-function ChatBox() {
+function ChatBox() { 
   const [newMessage, setNewMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef(null);
