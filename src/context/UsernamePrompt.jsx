@@ -15,7 +15,7 @@ export function UsernameProvider({ children }) {
         const name = prompt("Enter your name:");
         const finalName = name?.trim() || "Anonymous";
         setUsername(finalName);
-        socket.emit("join", finalName);
+        socket.emit("join", finalName); 
     }, []);
 
     if (!username) return <div className="loading">Loading...</div>;
