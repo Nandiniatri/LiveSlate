@@ -16,7 +16,7 @@
 //   const [isMuted, setIsMuted] = useState(false);
 //   const [isVideoOff, setIsVideoOff] = useState(false);
 //   const userId = useRef(uuid());
-//   const { username } = useUsername();
+//   const { username , socket } = useUsername();
 
 //   useEffect(() => {
 //     const init = async () => {
@@ -237,6 +237,7 @@
 
 
 
+
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { v4 as uuid } from "uuid";
@@ -296,11 +297,6 @@ const VideoCall = ({ roomID }) => {
       setMutedMap((prev) => ({ ...prev, [socketId]: muted }));
     });
 
-    // ✅ Receive usernames directly from peers
-    socket.on("receive-username", ({ socketId, username }) => {
-      setUsernamesMap((prev) => ({ ...prev, [socketId]: username }));
-    });
-
     return () => {
       socket.disconnect();
       Object.values(peersRef.current).forEach((pc) => pc.close());
@@ -338,9 +334,6 @@ const VideoCall = ({ roomID }) => {
     const offer = await pc.createOffer();
     await pc.setLocalDescription(offer);
     socket.emit("signal", { to: peerSocketId, from: socket.id, data: { sdp: offer } });
-
-    // ✅ Send your username directly to the peer
-    socket.emit("share-username", { to: peerSocketId, username });
   };
 
   const handleSignal = async (peerSocketId, data) => {
@@ -351,9 +344,6 @@ const VideoCall = ({ roomID }) => {
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);
         socket.emit("signal", { to: peerSocketId, from: socket.id, data: { sdp: answer } });
-
-        // ✅ Send username back to offerer
-        socket.emit("share-username", { to: peerSocketId, username });
       }
     }
     if (data.candidate) await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
@@ -479,6 +469,3 @@ const VideoCall = ({ roomID }) => {
 const Badge = () => <span className="mute-badge">🔇</span>;
 
 export default VideoCall;
-
-
-
