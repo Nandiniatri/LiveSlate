@@ -10,19 +10,23 @@ const LiveSlate = ({ roomID }) => {
         <div className="liveSlate-main-container">
             <UsernameProvider>
                 <Header roomID={roomID} />
+
                 <div className="liveSlate-layout">
                     <div className="video-call-wrapper">
                         <VideoCall roomID={roomID} />
                     </div>
 
-                    <div className="canvas-wrapper">
-                        <Canvas />
-                    </div>
+                    <div className="wrap-comp-div2">
+                        <div className="canvas-wrapper">
+                            <Canvas />
+                        </div>
 
-                    <div className="chatbox-wrapper">
-                        <ChatBox />
+                        <div className="chatbox-wrapper">
+                            <ChatBox />
+                        </div>
                     </div>
                 </div>
+
             </UsernameProvider>
         </div>
     );
