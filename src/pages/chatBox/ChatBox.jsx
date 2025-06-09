@@ -20,7 +20,7 @@ function ChatBox() {
   //   console.log(name);
 
   //   setUsername(name || "Anonymous");
-  //   socket.emit("join", name || "Anonymous");
+  //   socket.emit("join", name ||c "Anonymous");
   // }, []);
 
 
