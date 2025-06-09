@@ -647,7 +647,7 @@ textarea {
     padding: 6px 10px;
   }
 
-  .liveSlate-layout {
+  /* .liveSlate-layout {
     border: solid red;
     display: flex;
     flex-direction: column;
@@ -685,7 +685,6 @@ textarea {
     height: 22vh;
     border: solid blue;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     padding: 0px;
   }
@@ -710,7 +709,78 @@ textarea {
     width: 39%;
     max-width: 300px;
     height: 109px;
+  } */
+
+  .liveSlate-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+    padding: 10px;
   }
+
+  .video-call-wrapper {
+    height: auto !important;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+    border: none;
+    /* remove red border */
+  }
+
+  .video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+  }
+
+  .video-box {
+    width: 45%;
+    height: 100px;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .video-box video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .video-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    border: none;
+  }
+
+  .wrap-comp-div2 {
+    flex-direction: column;
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .canvas-wrapper,
+  .chatbox-wrapper {
+    max-width: 100%;
+  }
+
 }
 
 
