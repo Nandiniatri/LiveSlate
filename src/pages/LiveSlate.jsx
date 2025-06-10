@@ -26,7 +26,6 @@ const LiveSlate = ({ roomID }) => {
                         </div>
                     </div>
                 </div>
-
             </UsernameProvider>
         </div>
     );

@@ -4,9 +4,13 @@ import { LuVideo } from "react-icons/lu";
 import { useState } from "react";
 import Modal from "../../components/Modal";
 import { IoIosClose } from "react-icons/io";
+import { BsChatDots } from "react-icons/bs";
+import ChatBox from "../chatBox/ChatBox";
 
-const Header = ({roomID}) => {
+
+const Header = ({ roomID }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleShare = () => {
     setIsModalOpen(true);
@@ -24,12 +28,15 @@ const Header = ({roomID}) => {
     navigator.clipboard.writeText(fullURL);
   }
 
+  const openChat = () => setIsInviteOpen(true);
+  const closeInvite = () => setIsInviteOpen(false);
+
   return (
     <div className="header-container">
       <h2 className="header-title">LiveSlate</h2>
 
       <div className="toolbar">
-        <div className="tool-item">
+        <div className="tool-item videoIcon">
           <LuVideo size={22} className="icon" />
         </div>
 
@@ -37,10 +44,16 @@ const Header = ({roomID}) => {
           <PiShareFatBold size={20} className="icon" onClick={handleShare} />
         </div>
 
-        <div className="tool-item">
+        <div className="tool-item plusIcon">
           <FiPlus size={22} className="icon" />
         </div>
+
+        <div className="tool-item ChatIcon">
+          <BsChatDots size={22} className="icon" onClick={openChat} />
+        </div>
+
       </div>
+
 
       <Modal isOpen={isModalOpen} isClose={handleCLoseModal}>
         <div className="closeBtn-div">
@@ -61,6 +74,15 @@ const Header = ({roomID}) => {
           </div>
         </div>
       </Modal >
+
+      <Modal isOpen={isChatOpen} isClose={closeChat}>
+        <div className="closeBtn-div">
+          <IoIosClose onClick={closeChat} size={23} className="close-btn" />
+        </div>
+
+        {/* पूरा Chat UI */}
+        <ChatBox />
+      </Modal>
 
     </div >
   );
