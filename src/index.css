@@ -77,7 +77,7 @@
   box-sizing: border-box;
   height: 82vh;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  display: none;
+  /* display: none; */
 }
 
 
@@ -687,9 +687,9 @@ textarea {
   }
 
   .video-box {
-    flex: 0 0 130px;
-    width: 48%;
-    height: 105px;
+    /* flex: 0 0 130px; */
+    /* width: 48%; */
+    /* height: 105px; */
     max-width: 100%;
     border-radius: 10px;
   }
@@ -750,6 +750,7 @@ textarea {
     max-width: 40%;
     height: 58vh;
     padding: 0;
+    display: none;
   }
 
   .chat-panel {
@@ -776,7 +777,7 @@ textarea {
   }
 
   .chat-bubble {
-    max-width: 90%;
+    /* max-width: 90%; */
     padding: 7px;
     margin: 8px 0;
     border-radius: 12px;
@@ -784,21 +785,21 @@ textarea {
     word-wrap: break-word;
     background-color: white;
     color: black;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .chat-input {
     /* padding: 6px 10px; */
-    padding: 0px 2px;
+    /* padding: 0px 2px; */
     /* gap: 6px; */
     gap: 0px;
     /* width: 88px; */
   }
 
   .chat-input input {
-    font-size: 10px;
-    border: solid brown;
-    width: 88px;
+    font-size: 13px;
+    /* border: solid brown; */
+    /* width: 88px; */
   }
 
   .chat-input button {

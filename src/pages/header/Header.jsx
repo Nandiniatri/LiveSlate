@@ -28,8 +28,8 @@ const Header = ({ roomID }) => {
     navigator.clipboard.writeText(fullURL);
   }
 
-  const openChat = () => setIsInviteOpen(true);
-  const closeInvite = () => setIsInviteOpen(false);
+  const openChat = () => setIsChatOpen(true);
+  const closeChat = () => setIsChatOpen(false);
 
   return (
     <div className="header-container">
@@ -73,14 +73,14 @@ const Header = ({ roomID }) => {
             <button className="copy-btn" onClick={handleCopyLink}>Copy Link</button>
           </div>
         </div>
-      </Modal >
+      </Modal>
 
       <Modal isOpen={isChatOpen} isClose={closeChat}>
         <div className="closeBtn-div">
           <IoIosClose onClick={closeChat} size={23} className="close-btn" />
         </div>
 
-        {/* पूरा Chat UI */}
+        {/* Chat UI */}
         <ChatBox />
       </Modal>
 
