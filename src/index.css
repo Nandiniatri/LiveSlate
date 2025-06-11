@@ -738,12 +738,12 @@ textarea {
   .canvas-wrapper {
     flex: 3;
     max-width: 100%;
-    height: 33vh;
+    height: 45vh;
     padding: 8px;
   }
 
   canvas {
-    height: 26vh;
+    height: 33vh;
   }
 
   .chatbox-wrapper {
