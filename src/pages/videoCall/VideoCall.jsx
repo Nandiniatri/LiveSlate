@@ -234,5 +234,3 @@ const Badge = () => <span className="mute-badge">🔇</span>;
 export default VideoCall;
 
  
-
-
