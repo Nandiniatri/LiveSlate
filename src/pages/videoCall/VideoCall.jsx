@@ -15,7 +15,7 @@ const VideoCall = ({ roomID }) => {
   const [usernamesMap, setUsernamesMap] = useState({});
   const [isMuted, setIsMuted] = useState(false);
   const [isVideoOff, setIsVideoOff] = useState(false);
-  const userId = useRef(uuid());
+  const userId = useRef(uuid());   
   const { username } = useUsername();
 
   useEffect(() => {
