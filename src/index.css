@@ -711,12 +711,6 @@ textarea {
     margin-top: 8px;
     border: none;
   }
-
-  /* .canvas-wrapper,
-  .chatbox-wrapper {
-    max-width: 100%;
-  } */
-
   .chat-panel {
     display: flex;
     flex-direction: column;
