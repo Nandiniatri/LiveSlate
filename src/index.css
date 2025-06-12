@@ -620,7 +620,7 @@ textarea {
   flex: 1;
 }
 
-.ChatIcon{
+.ChatIcon {
   display: none;
 }
 
@@ -816,7 +816,7 @@ textarea {
     display: none;
   }
 
-  .ChatIcon{
+  .ChatIcon {
     display: block;
   }
 
@@ -827,6 +827,7 @@ textarea {
     color: white;
   }
 
+  
 }
 
 
