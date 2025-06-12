@@ -622,7 +622,18 @@ textarea {
 }
 
 .ChatIcon {
-  display: none;
+  display: block;
+}
+
+.modal-content {
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  height: 70vh;
 }
 
 @media (max-width:600px) {

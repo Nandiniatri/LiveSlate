@@ -44,10 +44,6 @@ const Header = ({ roomID }) => {
           <PiShareFatBold size={20} className="icon" onClick={handleShare} />
         </div>
 
-        <div className="tool-item plusIcon">
-          <FiPlus size={22} className="icon" />
-        </div>
-
         <div className="tool-item ChatIcon">
           <BsChatDots size={22} className="icon" onClick={openChat} />
         </div>
