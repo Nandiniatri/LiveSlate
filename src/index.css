@@ -658,7 +658,7 @@ textarea {
 
   .video-call-wrapper {
     /* height: auto !important; */
-    /* height: 180px; */
+    height: 180px;
     padding: 6px;
     display: flex;
     flex-direction: row;
