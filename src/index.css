@@ -658,7 +658,7 @@ textarea {
 
   .video-call-wrapper {
     /* height: auto !important; */
-    height: 180px;
+    /* height: 180px; */
     padding: 6px;
     display: flex;
     flex-direction: row;
@@ -680,18 +680,19 @@ textarea {
     align-items: center;
     gap: 8px;
     width: 100%;
-    height: auto;
+    height: 30vh;
     padding: 0;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    border: solid;
   }
 
   .video-box {
     /* flex: 0 0 130px; */
     /* width: 48%; */
-    /* height: 105px; */
-    max-width: 100%;
+    height: 105px;
+    /* max-width: 100%; */
     border-radius: 10px;
   }
 
@@ -825,9 +826,46 @@ textarea {
     font-weight: bold;
     margin-bottom: 10px;
     color: white;
+    margin-right: 208px;
   }
 
-  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    /* No dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    position: relative;
+    padding: 1rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border: none;
+    background: #2e004f;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .closeBtn-div {
+    position: absolute;
+    top: 18px;
+    right: 30px;
+  }
+
+  .close-btn {
+    color: white;
+    font-size: 24px;
+  }
+
 }
 
 

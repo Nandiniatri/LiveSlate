@@ -79,8 +79,6 @@ const Header = ({ roomID }) => {
         <div className="closeBtn-div">
           <IoIosClose onClick={closeChat} size={23} className="close-btn" />
         </div>
-
-        {/* Chat UI */}
         <ChatBox />
       </Modal>
 
