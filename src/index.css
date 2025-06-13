@@ -175,14 +175,14 @@ textarea {
 .chat-panel {
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
-  height: 90%;
+  height: 100%;
+  /* height: 90%; */
   background: linear-gradient(135deg, #3b0a75, #452779);
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   /* width: 30vh ; */
-  border: solid;
+  /* border: solid; */
 }
 
 .chat-title {
@@ -259,6 +259,27 @@ textarea {
 
 .chat-input button:hover {
   background-color: #7676ff;
+}
+
+.chatbox-wrapper {
+  flex: 1;
+  display: none;
+}
+
+.ChatIcon {
+  display: none;
+}
+
+.modal-content {
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  height: 70vh;
+  border: solid red;
 }
 
 .emoji-picker {
@@ -600,26 +621,6 @@ textarea {
   flex: 2;
 } */
 
-.chatbox-wrapper {
-  flex: 1;
-  /* display: none; */
-}
-
-.ChatIcon {
-  display: block;
-}
-
-.modal-content {
-  padding: 1.5rem;
-  border-radius: 12px;
-  width: 400px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  height: 70vh;
-  border: solid red;
-}
 
 @media (max-width:600px) {
 
@@ -849,7 +850,6 @@ textarea {
     width: 100vw;
     height: 100vh;
     background-color: transparent;
-    /* No dark background */
     display: flex;
     justify-content: center;
     align-items: center;

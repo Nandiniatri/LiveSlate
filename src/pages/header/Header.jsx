@@ -1,5 +1,4 @@
 import { PiShareFatBold } from "react-icons/pi";
-import { FiPlus } from "react-icons/fi";
 import { LuVideo } from "react-icons/lu";
 import { useState } from "react";
 import Modal from "../../components/Modal";
@@ -48,8 +47,11 @@ const Header = ({ roomID }) => {
           <BsChatDots size={22} className="icon" onClick={openChat} />
         </div>
 
-      </div>
+        <div className="tool-item header-ChatIcon">
+          <BsChatDots size={22} className="icon" />
+        </div>
 
+      </div>
 
       <Modal isOpen={isModalOpen} isClose={handleCLoseModal}>
         <div className="closeBtn-div">
