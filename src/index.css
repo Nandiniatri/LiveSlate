@@ -182,6 +182,7 @@ textarea {
   padding: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   /* width: 30vh ; */
+  border: solid;
 }
 
 .chat-title {
@@ -601,7 +602,7 @@ textarea {
 
 .chatbox-wrapper {
   flex: 1;
-  display: none;
+  /* display: none; */
 }
 
 .ChatIcon {
@@ -617,7 +618,7 @@ textarea {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   height: 70vh;
-     border: solid red;
+  border: solid red;
 }
 
 @media (max-width:600px) {
@@ -865,6 +866,7 @@ textarea {
     border: none;
     background: #2e004f;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    height: 63vh;
   }
 
   .closeBtn-div {
@@ -876,6 +878,22 @@ textarea {
   .close-btn {
     color: white;
     font-size: 24px;
+  }
+
+  .canvas-wrapper {
+    flex: 2;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 46vh;
+    /* border: 2px solid rgba(255, 255, 255, 0.1); */
+    overflow: hidden;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+    position: relative;
   }
 
 }
