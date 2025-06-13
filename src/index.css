@@ -270,18 +270,6 @@ textarea {
   display: none;
 }
 
-.modal-content {
-  padding: 1.5rem;
-  border-radius: 12px;
-  width: 400px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  height: 70vh;
-  border: solid red;
-}
-
 .emoji-picker {
   margin-top: 8px;
   position: absolute;
@@ -328,6 +316,17 @@ textarea {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+.modal-content {
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  height: 70vh;
+  border: solid red;
 }
 
 .modal-content {

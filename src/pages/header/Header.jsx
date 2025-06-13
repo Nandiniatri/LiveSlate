@@ -27,7 +27,10 @@ const Header = ({ roomID }) => {
     navigator.clipboard.writeText(fullURL);
   }
 
-  const openChat = () => setIsChatOpen(true);
+  const openChat = () => {
+    alert('hello')
+    setIsChatOpen(true)
+  };
   const closeChat = () => setIsChatOpen(false);
 
   return (
@@ -79,7 +82,6 @@ const Header = ({ roomID }) => {
         </div>
         <ChatBox />
       </Modal>
-
     </div >
   );
 };
