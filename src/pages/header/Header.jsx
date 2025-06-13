@@ -5,9 +5,9 @@ import Modal from "../../components/Modal";
 import { IoIosClose } from "react-icons/io";
 import { BsChatDots } from "react-icons/bs";
 import ChatBox from "../chatBox/ChatBox";
+import { RxCross1 } from "react-icons/rx";
 
-
-const Header = ({ roomID , handleSideChatBox}) => {
+const Header = ({ roomID, handleSideChatBox , isChatOpenHeader}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
@@ -34,7 +34,7 @@ const Header = ({ roomID , handleSideChatBox}) => {
     setIsChatOpen(false);
   }
 
-  
+
   return (
     <div className="header-container">
       <h2 className="header-title">LiveSlate</h2>
@@ -53,7 +53,12 @@ const Header = ({ roomID , handleSideChatBox}) => {
         </div>
 
         <div className="tool-item header-ChatIcon">
-          <BsChatDots size={22} className="icon" onClick={handleSideChatBox} />
+          {isChatOpenHeader ? (
+            <RxCross1 size={22} className="icon" onClick={handleSideChatBox} />
+          ) : (
+            <BsChatDots size={22} className="icon" onClick={handleSideChatBox} />
+
+          )}
         </div>
 
       </div>

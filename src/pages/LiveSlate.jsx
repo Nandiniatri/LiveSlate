@@ -58,7 +58,7 @@ import { UsernameProvider } from "../context/UsernamePrompt";
 import { useState } from "react";
 
 const LiveSlate = ({ roomID }) => {
-    const [isChatOpen, setIsChatOpen] = useState(false); 
+    const [isChatOpenHeader, setIsChatOpen] = useState(false); 
 
     const handleSideChatBox = () => {
         setIsChatOpen(prev => !prev);
@@ -67,7 +67,7 @@ const LiveSlate = ({ roomID }) => {
     return (
         <div className="liveSlate-main-container" style={{ position: "relative" }}>
             <UsernameProvider>
-                <Header roomID={roomID} handleSideChatBox={handleSideChatBox} />
+                <Header roomID={roomID} handleSideChatBox={handleSideChatBox} isChatOpenHeader={isChatOpenHeader}/>
 
                 <div className="liveSlate-layout">
                     <div className="video-call-wrapper">
@@ -79,7 +79,7 @@ const LiveSlate = ({ roomID }) => {
                             <Canvas />
                         </div>
 
-                        {isChatOpen && (
+                        {isChatOpenHeader && (
                             <div className="floating-chatbox">
                                 <ChatBox />
                             </div>
