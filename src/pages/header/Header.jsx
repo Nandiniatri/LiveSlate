@@ -34,14 +34,7 @@ const Header = ({ roomID , handleSideChatBox}) => {
     setIsChatOpen(false);
   }
 
-  // const handleSideChatBox = () => {
-  //   // alert('hello')
-  //   const chatbox = document.querySelector('.chatbox-wrapper');
-  //   if (chatbox) {
-  //     chatbox.classList.toggle('active-chat');
-  //   }
-  // }
-
+  
   return (
     <div className="header-container">
       <h2 className="header-title">LiveSlate</h2>
