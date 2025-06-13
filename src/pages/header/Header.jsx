@@ -7,7 +7,7 @@ import { BsChatDots } from "react-icons/bs";
 import ChatBox from "../chatBox/ChatBox";
 
 
-const Header = ({ roomID }) => {
+const Header = ({ roomID , handleSideChatBox}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
@@ -28,10 +28,19 @@ const Header = ({ roomID }) => {
   }
 
   const openChat = () => {
-    alert('hello')
     setIsChatOpen(true)
   };
-  const closeChat = () => setIsChatOpen(false);
+  const closeChat = () => {
+    setIsChatOpen(false);
+  }
+
+  // const handleSideChatBox = () => {
+  //   // alert('hello')
+  //   const chatbox = document.querySelector('.chatbox-wrapper');
+  //   if (chatbox) {
+  //     chatbox.classList.toggle('active-chat');
+  //   }
+  // }
 
   return (
     <div className="header-container">
@@ -51,7 +60,7 @@ const Header = ({ roomID }) => {
         </div>
 
         <div className="tool-item header-ChatIcon">
-          <BsChatDots size={22} className="icon" />
+          <BsChatDots size={22} className="icon" onClick={handleSideChatBox} />
         </div>
 
       </div>

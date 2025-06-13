@@ -263,7 +263,15 @@ textarea {
 
 .chatbox-wrapper {
   flex: 1;
-  display: none;
+  /* display: none; */
+  width: 0;
+  overflow: hidden;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+.chatbox-wrapper.active-chat {
+  opacity: 1;
+  flex: 1;
 }
 
 .ChatIcon {
@@ -317,6 +325,7 @@ textarea {
   align-items: center;
   z-index: 1000;
 }
+
 .modal-content {
   padding: 1.5rem;
   border-radius: 12px;
@@ -622,6 +631,9 @@ textarea {
 
 
 @media (max-width:600px) {
+  .header-ChatIcon {
+    display: none;
+  }
 
   .toolbar {
     justify-content: flex-start;
