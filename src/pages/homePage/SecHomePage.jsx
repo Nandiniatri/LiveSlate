@@ -27,7 +27,7 @@ const SecHomePage = () => {
                     </div>
 
                     <div className="feature-card">
-                        <img src="./assets/canvas.png" alt="Chat" className="feature-icon" />
+                        <img src="./assets/chat.png" alt="Chat" className="feature-icon" />
                         <h3 className="feature-title">Instant Chat</h3>
                         <p className="feature-desc">
                             Ask questions and share thoughts instantly with the built-in real-time chat.
