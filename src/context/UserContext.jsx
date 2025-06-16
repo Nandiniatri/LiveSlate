@@ -1,5 +1,6 @@
 // context/UserContext.js
-import { createContext, useContext, useState , useParams} from "react";
+import { createContext, useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const UserContext = createContext();
 
