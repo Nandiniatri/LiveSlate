@@ -1,4 +1,4 @@
-const Button = ({ children, onClick, className, disabled = false, style }) => {
+const Button = ({ children, onClick, className, disabled = false, style , type}) => {
     return (
         <button
             type={type}

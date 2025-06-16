@@ -1,11 +1,28 @@
-.home-container {
+/* .home-container {
   height: 100vh;
   background: radial-gradient(circle at center, #1b003d, #0c0022);
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   padding: 20px;
+  color: white;
 } 
+.home-container-div2{
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.home-container-h1-div{
+  border: solid;
+  text-align: center;
+}
+.home-image{
+  border: solid;
+  width: 80%;
+  height: 50vh;
+} */
 
 .glass-card {
   background: rgba(255, 255, 255, 0.05);
@@ -81,7 +98,7 @@
   width: 90%;
   max-width: 400px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .modal-buttons {
@@ -93,4 +110,88 @@
 .btn.cancel-btn {
   background-color: #ccc;
   color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.home-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #1b003d, #0c0022);
+  padding: 10px 20px;
+  color: white;
+  overflow: hidden;
+}
+
+.home-container-div2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  /* border: solid; */
+  margin-top: 33px;
+}
+
+.home-container-h1-div h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.home-container-div2 p {
+  font-size: 1rem;
+  color: #ccc;
+  max-width: 600px;
+}
+
+.join-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  /* font-weight: 600; */
+  background-color: #2979ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 20px;
+}
+
+.join-btn:hover {
+  background-color: #1c54b2;
+}
+
+.home-image {
+  width: 100%;
+  max-width: 800px;
+  height: 85vh;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  object-position: center;
+}
+
+.highlight-blue {
+  color: #007bff;
 }
