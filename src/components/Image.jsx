@@ -1,4 +1,4 @@
-const Image = ({ src, alt, className, style }) => {
+const Image = ({ src, alt, className, style , width , height}) => {
     return (
         <img
             src={src}
@@ -11,4 +11,4 @@ const Image = ({ src, alt, className, style }) => {
     );
 };
 
-export default Image;
+export default Image; 
