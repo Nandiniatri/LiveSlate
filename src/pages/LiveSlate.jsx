@@ -57,17 +57,17 @@ import Header from "./header/Header";
 import { UsernameProvider } from "../context/UsernamePrompt";
 import { useState } from "react";
 
-const LiveSlate = ({ roomID }) => {
-    const [isChatOpenHeader, setIsChatOpen] = useState(false); 
+const LiveSlate = ({ roomID , handleSideChatBox , setIsChatOpen}) => {
+    // const [isChatOpenHeader, setIsChatOpen] = useState(false); 
 
-    const handleSideChatBox = () => {
-        setIsChatOpen(prev => !prev);
-    };
+    // const handleSideChatBox = () => {
+    //     setIsChatOpen(prev => !prev);
+    // };
 
     return (
         <div className="liveSlate-main-container" style={{ position: "relative" }}>
             <UsernameProvider>
-                <Header roomID={roomID} handleSideChatBox={handleSideChatBox} isChatOpenHeader={isChatOpenHeader}/>
+                {/* <Header roomID={roomID} handleSideChatBox={handleSideChatBox} isChatOpenHeader={isChatOpenHeader}/> */}
 
                 <div className="liveSlate-layout">
                     <div className="video-call-wrapper">
