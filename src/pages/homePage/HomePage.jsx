@@ -125,7 +125,7 @@ const Home = () => {
       </div>
 
       <Image
-        src={"h.png"} className="home-image" />
+        src="./assets/meeting.png" className="home-image" />
 
       <div>
         <SecHomePage />
