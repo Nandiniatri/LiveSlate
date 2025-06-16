@@ -184,8 +184,8 @@
 
 .home-image {
   width: 100%;
-  max-width: 800px;
-  height: 85vh;
+  max-width: 850px;
+  height: 80vh;
   display: block;
   margin: 0 auto;
   border-radius: 12px;
@@ -220,7 +220,7 @@
 }
 
 .section-title {
-  font-size: 36px;
+  font-size: 46px;
   font-weight: bold;
   margin-bottom: 16px;
 }
@@ -252,9 +252,10 @@
 }
 
 .feature-icon {
-  width: 80px;
-  height: 80px;
+  /* width: 80px; */
+  height: 143px;
   margin-bottom: 20px;
+  border-radius: 20px;
 }
 
 .feature-title {
