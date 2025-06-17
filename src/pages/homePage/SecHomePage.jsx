@@ -35,9 +35,6 @@ const SecHomePage = () => {
                     </div>
                 </div>
 
-                <div className="cta-button">
-                    <button>Try LiveSlate Now</button>
-                </div>
             </div>
         </div>
     );

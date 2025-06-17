@@ -341,8 +341,9 @@
 }
 
 .feature-img-icon {
-  width: 60px;
+  width: 84%;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .feature-title {
