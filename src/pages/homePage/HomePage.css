@@ -287,3 +287,71 @@
 .cta-button button:hover {
   background-color: #1e4ed8;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.third-section {
+  /* background-color: #09002b; */
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.third-heading {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.third-subtext {
+  font-size: 18px;
+  color: #a0a0a0;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.feature-box {
+  background: #13024c;
+  padding: 30px;
+  border-radius: 16px;
+  width: 280px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 183, 255, 0.15);
+}
+
+.feature-box:hover {
+  transform: translateY(-10px);
+}
+
+.feature-img-icon {
+  width: 60px;
+  margin-bottom: 20px;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.feature-desc {
+  font-size: 16px;
+  color: #c8c8c8;
+}

@@ -82,6 +82,7 @@ import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import SecHomePage from './SecHomePage';
+import ThirdPage from './ThirdPage';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -129,6 +130,10 @@ const Home = () => {
 
       <div>
         <SecHomePage />
+      </div>
+
+      <div>
+        <ThirdPage />
       </div>
 
       {isModalOpen && (
