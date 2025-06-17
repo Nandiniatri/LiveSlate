@@ -328,12 +328,14 @@
 }
 
 .feature-box {
-  background: #13024c;
+  /* background: #13024c; */
+  background: #1d1a3a;
   padding: 30px;
   border-radius: 16px;
   width: 280px;
   transition: transform 0.3s ease;
   box-shadow: 0 0 20px rgba(0, 183, 255, 0.15);
+  /* border: solid; */
 }
 
 .feature-box:hover {
