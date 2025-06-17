@@ -77,13 +77,13 @@
 
 import Button from '../../components/Button';
 import Image from '../../components/Image';
-import Header from '../header/Header';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import SecHomePage from './SecHomePage';
 import ThirdPage from './ThirdPage';
 import Footer from '../footer/Footer';
+import HomePageHeader from '../header/HomePageHeader';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -109,7 +109,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header />
+      <HomePageHeader />
 
       <div className="home-container-div2">
         <div className="home-container-h1-div">
