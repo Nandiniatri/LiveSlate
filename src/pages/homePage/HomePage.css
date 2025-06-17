@@ -138,9 +138,10 @@
   /* background: radial-gradient(circle at center, #1b003d, #0c0022); */
   background: radial-gradient(1000px circle at 90% 10%, rgb(150 81 173 / 40%), #2e0681 60%);
   background-color: #270034;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   color: white;
   overflow: hidden;
+  padding-top: 20px;
 }
 
 .home-container-div2 {

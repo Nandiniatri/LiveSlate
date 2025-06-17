@@ -83,6 +83,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import SecHomePage from './SecHomePage';
 import ThirdPage from './ThirdPage';
+import Footer from '../footer/Footer';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -134,6 +135,10 @@ const Home = () => {
 
       <div>
         <ThirdPage />
+      </div>
+
+      <div>
+        <Footer />
       </div>
 
       {isModalOpen && (
