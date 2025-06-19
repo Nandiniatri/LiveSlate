@@ -390,6 +390,8 @@ textarea {
   background-color: #2a2a3b;
   color: white;
   font-size: 14px;
+  /* border: solid red; */
+  width: 268px;
 }
 
 .copy-btn {

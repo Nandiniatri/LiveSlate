@@ -121,29 +121,15 @@
 .modal-buttons {
   margin-top: 1.5rem;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 60px;
+  flex-direction: row;
 }
 
 .btn.cancel-btn {
   background-color: #ccc;
   color: #333;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
