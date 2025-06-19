@@ -1,5 +1,7 @@
 .signup-container {
-  background-color: #1A004E;
+  /* background-color: #1A004E; */
+  background: radial-gradient(1000px circle at 90% 10%, rgb(150 81 173 / 40%), #2e0681 60%);
+  background-color: #270034;
   color: white;
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
