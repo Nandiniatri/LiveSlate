@@ -145,8 +145,7 @@ const Home = () => {
         <div className="modal-backdrop">
           <div className="modal">
             <h2>Start a New Meeting</h2>
-            <p>Send this to people you want to meet with. Be sure to save it so you can use it later, too.</p>
-
+            
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "10px" }}>
               <input
                 type="text"
