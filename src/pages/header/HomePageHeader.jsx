@@ -14,7 +14,7 @@ const HomePageHeader = () => {
             <div className="header-container">
                 <h2 className="header-title">LiveSlate</h2>
                 <div className="toolbar">
-                    <Button className="home-header-btn" onClick={handleLoginBtn}>Login</Button>
+                    <Button className="home-header-btn" onClick={handleLoginBtn}>Sign up</Button>
                 </div>
             </div>
 
