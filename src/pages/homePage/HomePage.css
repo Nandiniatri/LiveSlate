@@ -68,8 +68,10 @@
 }
 
 .create-btn {
-  background: linear-gradient(to right, #c41aff, #9933ff);
+  /* background: linear-gradient(to right, #c41aff, #9933ff); */
   color: white;
+  background: linear-gradient(to right, #4d4dff, #1a75ff);
+  ;
 }
 
 .btn:hover {
@@ -99,6 +101,7 @@
   max-width: 400px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: black;
 }
 
 .modal-buttons {
