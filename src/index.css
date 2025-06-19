@@ -367,6 +367,7 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  height: 35vh;
 }
 
 .invite-modal h2.invite-title {
@@ -387,7 +388,8 @@ textarea {
   padding: 8px;
   border-radius: 6px;
   border: 1px solid #444;
-  background-color: #2a2a3b;
+  /* background-color: #2a2a3b; */
+  background-color: black;
   color: white;
   font-size: 14px;
   /* border: solid red; */
@@ -941,6 +943,7 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s ease;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {

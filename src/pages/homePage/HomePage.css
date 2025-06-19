@@ -116,6 +116,8 @@
   align-items: center;
   justify-content: center;
   line-height: 67px;
+  backdrop-filter: blur(10px);
+  
 }
 
 .modal-buttons {
@@ -189,7 +191,7 @@
 .home-image {
   width: 100%;
   max-width: 850px;
-  height: 80vh;
+  /* height: 80vh; */
   display: block;
   margin: 0 auto;
   border-radius: 12px;
