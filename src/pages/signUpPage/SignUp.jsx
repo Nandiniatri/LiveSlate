@@ -1,6 +1,17 @@
+import { supabase } from '../../supabaseClient';
 import './SignUp.css';
 
 const SignUpPage = () => {
+
+    const handleGoogleLogin = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+        })
+        if (error) {
+            console.error("Login error:", error.message);
+        }
+    }
+
     return (
         <div className="signup-container">
             <div className="signup-icon">👤</div>
@@ -10,17 +21,16 @@ const SignUpPage = () => {
                 world-class collaboration.
             </p>
 
-            <button className="google-button">
+            {/* <button className="google-button">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-
                 />
                 Continue with Google
-            </button>
+            </button> */}
 
             <div className="or-text">or</div>
 
-            <button className="continue-button">Continue</button>
+            <button className="continue-button" onClick={handleGoogleLogin}>Continue</button>
 
             <p className="terms-text">
                 By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
