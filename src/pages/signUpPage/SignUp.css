@@ -1,0 +1,77 @@
+.signup-container {
+  background-color: #1A004E;
+  color: white;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.signup-icon {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.signup-heading {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.signup-subheading {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.google-button {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.google-button img {
+  width: 20px;
+}
+
+.or-text {
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.continue-button {
+  background-color: #1877F2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 300px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.terms-text {
+  font-size: 12px;
+  color: #ccc;
+  max-width: 300px;
+}
+
+.login-text {
+  font-size: 14px;
+  margin-top: 20px;
+}
