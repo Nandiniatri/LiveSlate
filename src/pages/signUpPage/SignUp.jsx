@@ -165,34 +165,7 @@ import { supabase } from '../../supabaseClient'; // ✅ make sure path is correc
 import { useUsername } from '../../context/UsernamePrompt';
 
 const SignUpPage = () => {
-    //   const [user, setUser] = useState(null);
-    const { user, setUser, handleGoogleLogin, handleLogout } = useUsername();
-
-    // // 🔐 Google login handler
-    // const handleGoogleLogin = async () => {
-    //     const { error } = await supabase.auth.signInWithOAuth({
-    //         provider: 'google',
-    //     });
-    //     if (error) {
-    //         console.error("Login error:", error.message);
-    //     }
-    // };
-
-    // // 🔓 Logout handler
-    // const handleLogout = async () => {
-    //     await supabase.auth.signOut();
-    //     setUser(null); // clear user on logout
-    // };
-
-    // // 🧠 Check user on mount
-    // useEffect(() => {
-    //     const fetchUser = async () => {
-    //         const { data: { user } } = await supabase.auth.getUser();
-    //         setUser(user);
-    //     };
-
-    //     fetchUser();
-    // }, []);
+    const { handleGoogleLogin } = useUsername();
 
     return (
         <div className="signup-container">

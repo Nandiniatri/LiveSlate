@@ -6,8 +6,8 @@ import ModalB from "../../components/ModalB";
 import { useUsername } from "../../context/UsernamePrompt";
 
 const HomePageHeader = () => {
-    const { user } = useUsername();
-    console.log(user);
+    const { user, handleLogout } = useUsername();
+    console.log('User object:', user);
 
 
     return (
@@ -16,12 +16,16 @@ const HomePageHeader = () => {
                 <h2 className="header-title">LiveSlate</h2>
                 <div className="toolbar">
                     {user ? (
-                        // <img
-                        //     src={user.user_metadata.avatar_url}
-                        //     alt="Profile"
-                        //     style={{ width: 80, borderRadius: '50%', marginBottom: 10 }}
-                        // />
-                        <p>{user.user_metadata.full_name}</p>
+                        <>
+                            <img
+                                src={user.user_metadata.avatar_url}
+                                style={{ width: 80, borderRadius: '50%', marginBottom: 10 }}
+                            />
+                            {/* <p>{user.user_metadata.full_name}</p> */}
+                            <button className="logout-button" onClick={handleLogout}>
+                                Logout
+                            </button>
+                        </>
                     ) : (
                         <Button className="home-header-btn"><Link to={'/signUp'}>Sign up</Link></Button>
                     )}
