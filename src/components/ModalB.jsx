@@ -13,4 +13,4 @@ const ModalB = ({ children, isOpen }) => {
   );
 };
 
-export default ModalB;
+export default ModalB; 

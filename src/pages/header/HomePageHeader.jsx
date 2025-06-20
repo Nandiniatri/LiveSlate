@@ -2,26 +2,24 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import SignUpPage from "../signUpPage/SignUp";
 import { Link } from "react-router-dom";
+import ModalB from "../../components/ModalB";
 
 const HomePageHeader = () => {
-    // const [showLoginForm, setShowLoginForm] = useState(false);
+//    const [showModalB , setShowModalB] = useState(false);
 
-    // const handleLoginBtn = () => {
-    //     setShowLoginForm(true);
-    // }
+//     const handleLoginBtn = () => {
+//         alert('helo')
+//         setShowModalB(true);
+//     }
 
     return (
         <div className="header-wrapper">
             <div className="header-container">
                 <h2 className="header-title">LiveSlate</h2>
                 <div className="toolbar">
-                    <Button className="home-header-btn"><Link to={"/signUp"}>Sign up</Link></Button>
+                    <Button className="home-header-btn"><Link to={'/signUp'}>Sign up</Link></Button>
                 </div>
             </div>
-
-            {/* {showLoginForm && (
-               <SignUpPage />
-            )} */}
 
         </div>
     );
