@@ -14,7 +14,7 @@ function App() {
         <Router>
           {/* <Header /> */}
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
             <Route path="/room/:roomID" element={<LiveSlateWrapper />} />
             <Route path="/signUp" element={<SignUpPage />} />
           </Routes>
