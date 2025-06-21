@@ -56,43 +56,38 @@ const HomePageHeader = () => {
                 <h2 className="header-title">LiveSlate</h2>
                 <div className="toolbar">
                     {user ? (
-                        <>
+                        <div className="avatar-wrapper">
                             <img
                                 src={user.user_metadata.avatar_url}
-                                style={{ width: 80, borderRadius: "50%", cursor: "pointer" }}
-                                onClick={() => setShowProfileModal(true)}
+                                style={{ width: 50, height: 50, borderRadius: "50%", cursor: "pointer" }}
+                                onClick={() => setShowProfileModal(!showProfileModal)}
+                                alt="User Avatar"
                             />
-                            <p>{user.user_metadata.full_name}</p>
-                        </>
+
+                            {showProfileModal && (
+                                <div className="dropdown-profile-modal">
+                                    <p style={{ margin: "0 0 10px", fontWeight: "bold" }}>
+                                        {user.user_metadata.full_name}
+                                    </p>
+                                    <button className="logout-button" onClick={handleLogout}>
+                                        Logout
+                                    </button>
+                                    <button className="close-button" onClick={() => setShowProfileModal(false)}>
+                                        Close
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     ) : (
                         <Button className="home-header-btn">
-                            <Link to={"/signUp"}>Sign up</Link>
+                            <Link to="/signUp">Sign up</Link>
                         </Button>
                     )}
                 </div>
             </div>
-
-            {/* Modal */}
-            {showProfileModal && (
-                <div className="profile-modal">
-                    <div className="modal-content">
-                        <img
-                            src={user.user_metadata.avatar_url}
-                            style={{ width: 80, borderRadius: "50%", marginBottom: 10 }}
-                            alt="avatar"
-                        />
-                        <p>{user.user_metadata.full_name}</p>
-                        <button className="logout-button" onClick={handleLogout}>
-                            Logout
-                        </button>
-                        <button className="close-button" onClick={() => setShowProfileModal(false)}>
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
 
 export default HomePageHeader;
+
