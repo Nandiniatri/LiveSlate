@@ -49,7 +49,9 @@ import { useUsername } from "../../context/UsernamePrompt";
 const HomePageHeader = () => {
     const { user, handleLogout } = useUsername();
     const [showProfileModal, setShowProfileModal] = useState(false);
+    console.log(user);
 
+    
     return (
         <div className="header-wrapper">
             <div className="header-container">
@@ -61,7 +63,6 @@ const HomePageHeader = () => {
                                 src={user.user_metadata.avatar_url}
                                 style={{ width: 50, height: 50, borderRadius: "50%", cursor: "pointer" }}
                                 onClick={() => setShowProfileModal(!showProfileModal)}
-                                alt="User Avatar"
                             />
 
                             {showProfileModal && (
