@@ -32,7 +32,7 @@ const HomePageHeader = () => {
                                     </button>
                                     <button className="close-button" onClick={() => setShowProfileModal(false)}>
                                         Close
-                                    </button>
+                                    </button> 
                                 </div>
                             )}
                             
