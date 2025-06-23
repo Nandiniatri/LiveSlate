@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import { useUsername } from '../../context/UsernamePrompt';
 import './Footer.css';
+import FooterInfoPage from './FooterInfoPage';
+import { useNavigate } from 'react-router-dom';
 
 
 const Footer = () => {
   const { footerNav } = useUsername();
+  const navigate = useNavigate();
 
 
   const handleFooterUI = (id) => {
-    alert(id)
+    navigate(`/footer/${id}`);
   }
 
   return (
@@ -49,6 +53,8 @@ const Footer = () => {
           <i className="fa-brands fa-linkedin"></i>
         </div>
       </div>
+
+
     </div>
   );
 };
