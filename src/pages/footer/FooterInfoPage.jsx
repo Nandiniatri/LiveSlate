@@ -15,7 +15,7 @@ const FooterInfoPage = () => {
 
 
     return (
-        <div>
+        <div className="footerInfoPage-main-header">
             <h1>{selectedItem.name}</h1>
             {selectedItem.info && selectedItem.info.map((item, id) => (
                 <div key={id}>
