@@ -1,6 +1,19 @@
 import './Footer.css';
 
+const navData = [
+  {id:1 , name:'Home'},
+  {id:2 , name:'Features'},
+  {id:3 , name:'Blog'},
+  {id:4 , name:'Pricing'},
+  {id:5 , name:'Contact'}
+]
+
 const Footer = () => {
+
+  const handleFooterUI = (id) => {
+    alert(id)
+  }
+
   return (
     <div className="footer">
       <div className="footer-top">
@@ -16,11 +29,9 @@ const Footer = () => {
           <div>
             <h4>Quick Links</h4>
             <ul>
-              <li>Home</li>
-              <li>Features</li>
-              <li>Blog</li>
-              <li>Pricing</li>
-              <li>Contact</li>
+              {navData.map((item) => (
+                <li key={item.id} onClick={() => handleFooterUI(item.id)}>{item.name}</li>
+              ))}
             </ul>
           </div>
           <div>
