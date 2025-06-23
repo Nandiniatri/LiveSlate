@@ -161,6 +161,7 @@
 
 import './SignUp.css';
 import { useUsername } from '../../context/UsernamePrompt';
+import Button from '../../components/Button';
 
 const SignUpPage = () => {
     const { handleGoogleLogin } = useUsername();
@@ -175,13 +176,13 @@ const SignUpPage = () => {
                     world-class collaboration.
                 </p>
 
-                <button className="google-button" onClick={handleGoogleLogin}>
+                <Button className="google-button" onClick={handleGoogleLogin}>
                     <img
                         src="https://icon2.cleanpng.com/20240216/yhs/transparent-google-logo-google-logo-with-colorful-letters-on-black-1710875297222.webp"
                         style={{ width: 20, marginRight: 8 }}
                     />
                     Continue with Google
-                </button>
+                </Button>
 
                 {/* <div className="or-text">or</div> */}
 
