@@ -160,8 +160,6 @@
 
 
 import './SignUp.css';
-import { useEffect, useState } from 'react';
-import { supabase } from '../../supabaseClient'; // ✅ make sure path is correct
 import { useUsername } from '../../context/UsernamePrompt';
 
 const SignUpPage = () => {
@@ -170,7 +168,7 @@ const SignUpPage = () => {
     return (
         <div className="signup-container">
             <>
-                <div className="signup-icon">👤</div>
+                {/* <div className="signup-icon">👤</div> */}
                 <h1 className="signup-heading">Welcome to <br />LiveSlate</h1>
                 <p className="signup-subheading">
                     Create your account and discover<br />
@@ -185,9 +183,10 @@ const SignUpPage = () => {
                     Continue with Google
                 </button>
 
-                <div className="or-text">or</div>
+                {/* <div className="or-text">or</div> */}
 
-                <button className="continue-button" onClick={handleGoogleLogin}>Continue</button>
+                {/* <button className="continue-button" onClick={handleGoogleLogin}>Continue</button> */}
+                <br />
 
                 <p className="terms-text">
                     By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
@@ -202,21 +201,3 @@ const SignUpPage = () => {
 };
 3
 export default SignUpPage;
-
-
-
-
-{/* <div className="user-info" style={{ textAlign: 'center' }}>
-    <img
-        src={user.user_metadata.avatar_url}
-        alt="Profile"
-        style={{ width: 80, borderRadius: '50%', marginBottom: 10 }}
-    />
-    <h2>{user.user_metadata.full_name}</h2>
-    <p>{user.email}</p>
-
-    <button className="logout-button" onClick={handleLogout}>
-        Logout
-    </button>
-</div>
-         */}

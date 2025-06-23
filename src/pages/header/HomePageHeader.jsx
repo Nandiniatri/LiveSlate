@@ -8,7 +8,6 @@ const HomePageHeader = () => {
     const [showProfileModal, setShowProfileModal] = useState(false);
     console.log(user);
 
-    
     return (
         <div className="header-wrapper">
             <div className="header-container">
@@ -27,19 +26,19 @@ const HomePageHeader = () => {
                                     <p style={{ margin: "0 0 10px", fontWeight: "bold" }}>
                                         {user.user_metadata.full_name}
                                     </p>
-                                    <button className="logout-button" onClick={handleLogout}>
+                                    <Button className="logout-button" onClick={handleLogout}>
                                         Logout
-                                    </button>
-                                    <button className="close-button" onClick={() => setShowProfileModal(false)}>
+                                    </Button>
+                                    <Button className="close-button" onClick={() => setShowProfileModal(false)}>
                                         Close
-                                    </button> 
+                                    </Button> 
                                 </div>
                             )}
                             
                         </div>
                     ) : (
                         <Button className="home-header-btn">
-                            <Link to="/signUp">Sign up</Link>
+                            <Link to="/signUp" className="home-header-link-btn">Sign up</Link>
                         </Button>
                     )}
                 </div>

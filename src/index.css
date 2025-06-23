@@ -1005,3 +1005,9 @@ textarea {
 .close-button:hover {
   background-color: #555;
 }
+
+
+.home-header-link-btn{
+  color: white;
+  text-decoration: none;
+}
