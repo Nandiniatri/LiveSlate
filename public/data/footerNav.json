@@ -1,49 +1,54 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "name": "Home",
         "info": [
             {
+                "id": "1",
                 "status": "Live",
                 "note": "Homepage is active and visible to all users."
             }
         ]
     },
     {
-        "id": 2,
+        "id": "2",
         "name": "Features",
         "info": [
             {
+                "id": "2",
                 "status": "Work in Progress",
                 "note": "New AI-based features are being integrated."
             }
         ]
     },
     {
-        "id": 3,
+        "id": "3",
         "name": "Blog",
         "info": [
             {
+                "id": "3",
                 "status": "Coming Soon",
                 "note": "Our blog section will launch next month."
             }
         ]
     },
     {
-        "id": 4,
+        "id": "4",
         "name": "Pricing",
         "info": [
             {
+                "id": "4",
                 "status": "Live",
                 "note": "Updated pricing for 2025 is now available."
             }
         ]
     },
     {
-        "id": 5,
+        "id": "5",
         "name": "Contact",
         "info": [
             {
+                "id": "5",
                 "status": "Live",
                 "note": "Users can reach out via form or email."
             }
