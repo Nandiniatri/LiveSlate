@@ -43,10 +43,25 @@ const UsernameContext = createContext();
 const socket = io("https://chat-backend-52d6.onrender.com");
 
 export function UsernameProvider({ children }) {
-    const [username, setUsername] = useState("");         // stores user's display name
-    const [messages, setMessages] = useState([]);         // stores chat messages
-    const [user, setUser] = useState(null);               // stores Supabase auth user
-    const [loading, setLoading] = useState(true);         // to handle initial loading
+    const [username, setUsername] = useState("");
+    const [messages, setMessages] = useState([]);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [footerNav , setFooterNav] = useState([]);
+
+    useEffect(() => {
+        const fetchFooterNavData = async() => {
+            try {
+                const response = await fetch('/public/data/footerNav.json');
+                const result = await response.json();
+                setFooterNav(result);
+            } catch (error) {
+                console.log('Error');
+            }
+        }
+
+        fetchFooterNavData();
+    }, [])
 
     // Get name from sessionStorage or default to Anonymous
     useEffect(() => {
@@ -105,6 +120,7 @@ export function UsernameProvider({ children }) {
                 setUser,
                 handleGoogleLogin,
                 handleLogout,
+                footerNav
             }}
         >
             {children}

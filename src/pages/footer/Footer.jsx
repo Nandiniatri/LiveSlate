@@ -1,14 +1,10 @@
+import { useUsername } from '../../context/UsernamePrompt';
 import './Footer.css';
 
-const navData = [
-  {id:1 , name:'Home'},
-  {id:2 , name:'Features'},
-  {id:3 , name:'Blog'},
-  {id:4 , name:'Pricing'},
-  {id:5 , name:'Contact'}
-]
 
 const Footer = () => {
+  const { footerNav } = useUsername();
+
 
   const handleFooterUI = (id) => {
     alert(id)
@@ -29,7 +25,7 @@ const Footer = () => {
           <div>
             <h4>Quick Links</h4>
             <ul>
-              {navData.map((item) => (
+              {footerNav.map((item) => (
                 <li key={item.id} onClick={() => handleFooterUI(item.id)}>{item.name}</li>
               ))}
             </ul>
