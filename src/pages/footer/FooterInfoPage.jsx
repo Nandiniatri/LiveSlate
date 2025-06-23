@@ -7,7 +7,7 @@ const FooterInfoPage = () => {
 
     const selectedItem = footerNav.find((item) => item.id === id);
     console.log(selectedItem);
-    
+
 
     if (!selectedItem) {
         return <h2>No Item Found</h2>
@@ -16,8 +16,13 @@ const FooterInfoPage = () => {
 
     return (
         <div>
-            <h1>Hello</h1>
-
+            <h1>{selectedItem.name}</h1>
+            {selectedItem.info && selectedItem.info.map((item, id) => (
+                <div key={id}>
+                    <p>{item.status}</p>
+                    <p>{item.note}</p>
+                </div>
+            ))}
         </div>
     )
 }
